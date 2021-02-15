@@ -20,30 +20,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="联系作者：QQ：269672173">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AirLongDian&#39;s BLOG">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="C语言快速入门 第一部分：一门基础的编程语言  走计算机行业不管哪个方向，会一两门编程语言都是必须的，第一部分讲一下如何快速的掌握一门基础的编程语言。 这里以c语言作为讲解对象 首先我们要明晰一个基本的概念，就是模块化c语言是一个模块化了的语言，这个模块化体现在很多方面，比如函数，比如结构体，比如多文件。 首先说一下函数 函数是c语言的基本单位一个c语言程序，就是由一个个变量拼成结构体，一个个结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言快速入门">
+<meta property="og:url" content="http://example.com/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE01/index.html">
 <meta property="og:site_name" content="AirLongDian&#39;s BLOG">
-<meta property="og:description" content="联系作者：QQ：269672173">
+<meta property="og:description" content="C语言快速入门 第一部分：一门基础的编程语言  走计算机行业不管哪个方向，会一两门编程语言都是必须的，第一部分讲一下如何快速的掌握一门基础的编程语言。 这里以c语言作为讲解对象 首先我们要明晰一个基本的概念，就是模块化c语言是一个模块化了的语言，这个模块化体现在很多方面，比如函数，比如结构体，比如多文件。 首先说一下函数 函数是c语言的基本单位一个c语言程序，就是由一个个变量拼成结构体，一个个结构">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-15T14:41:25.000Z">
+<meta property="article:modified_time" content="2021-02-15T14:55:33.107Z">
 <meta property="article:author" content="AirLongDian">
+<meta property="article:tag" content="计算机协会社课">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE01/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>AirLongDian's BLOG</title>
+  <title>C语言快速入门 | AirLongDian's BLOG</title>
   
 
 
@@ -156,334 +159,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/15/PC%E4%B8%8B%E5%AE%89%E5%8D%93%E6%8B%86%E5%8C%85%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E4%B8%8E%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AirLongDian">
-      <meta itemprop="description" content="联系作者：QQ：269672173">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AirLongDian's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/PC%E4%B8%8B%E5%AE%89%E5%8D%93%E6%8B%86%E5%8C%85%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E4%B8%8E%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8D/" class="post-title-link" itemprop="url">PC下安卓逆向拆包编译打包与重新签名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-15 22:57:43 / 修改时间：22:58:33" itemprop="dateCreated datePublished" datetime="2021-02-15T22:57:43+08:00">2021-02-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">信息安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="PC下安卓逆向拆包编译打包与重新签名"><a href="#PC下安卓逆向拆包编译打包与重新签名" class="headerlink" title="PC下安卓逆向拆包编译打包与重新签名"></a>PC下安卓逆向拆包编译打包与重新签名</h1><blockquote>
-<p>1.安装jdk开发环境并设置环境变量</p>
-</blockquote>
-<ol>
-<li>到<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">ORCLE</a>官网下载JDK开发环境<img src="https://i.loli.net/2020/06/05/PsHLpcQXwq4xfdG.png" alt="orcle官网.png"></li>
-<li>运行安装（基本一直下一步，没啥好说的，记住自己安装目录选在哪了就行）</li>
-<li>配置环境变量<img src="https://i.loli.net/2020/06/05/Xbd1NQcLgnDHaYC.png" alt="搜索高级系统设置"><img src="https://i.loli.net/2020/06/05/SpFHogT7zrP3YqZ.png" alt="系统属性.png"><img src="https://i.loli.net/2020/06/05/Ykr1OKWz8IQVpdx.png" alt="path.png"><img src="https://i.loli.net/2020/06/05/THceMiSoGOtKhIA.png" alt="添加变量.png"></li>
-</ol>
-<p><strong>然后找到你的JDK安装目录下的bin文件夹</strong></p>
-<p><img src="https://i.loli.net/2020/06/05/QHpoV746ud89rYf.png" alt="目录.png"></p>
-<p>最后一路确定回来。</p>
-<blockquote>
-<p>2.apk拆包打包工具——APLTOOL</p>
-</blockquote>
-<ol>
-<li>到<a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/">APLTOOL官网</a>往下翻下载最新版APLTOOL<img src="https://i.loli.net/2020/06/05/gtEmL2uIVKOYU67.png" alt="apktool官网.png"></li>
-<li>找一个你喜欢的地方新建一个文件夹作为安卓拆包打包的地方，然后把下载的.jar文件放进去（可以把名字改短点以防打指令时候不好打）</li>
-<li>把你要拆包的.apk或者要打包成apk的文件夹也放进来</li>
-<li>按住shift+右键，选择在此处打开powershell<strong>（按住shift再右键才有）</strong><img src="https://i.loli.net/2020/06/05/WERqzMGudB8mAxY.png" alt="shiftlright.png"></li>
-<li>执行拆包/打包命令</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar d filename.apk&#x2F;&#x2F;拆包</span><br><span class="line">java -jar jarfilename.jar b flodername&#x2F;&#x2F;打包</span><br></pre></td></tr></table></figure>
-<h2 id="注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息"><a href="#注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息" class="headerlink" title="注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息"></a><font color=red>注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></h2><blockquote>
-<p>3.使用dex2jar将dex文件转换为jar格式</p>
-</blockquote>
-<p>在将apk逆向拆包后，apktool会将里面的dex文件逆向为可编辑的smail文件，但是smail的语法比较奇怪，并不是很适合大多数人的阅读习惯，因此我们可以</p>
-<p>首先把apk文件拷贝一份解压缩，获取里面的dex文件，然后输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat filename.dex</span><br></pre></td></tr></table></figure>
-<p>将dex文件转换为jar，再经过逆向，便可通过阅读java源代码的方式来寻找需要逆向后修改的内容，找到后到smail文件内修改对应内容即可。</p>
-<blockquote>
-<p>4.使用JD-GUI或CFR将jar文件逆向为java源码</p>
-</blockquote>
-<p>JD-GUI和CFR都是知名的java逆向工具，通过使用JD-GUI和CFR我们可以将已经编译为字节码或jar包的java文件逆向回java源码，JD-GUI是一个图形界面的工具，而CFR则是命令行工具。</p>
-<p>JD-GUI的使用比较简单，只要在终端内输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar </span><br></pre></td></tr></table></figure>
-<p>即可打开一个带图形界面的软件，在里面选中逆向出的jar打开即可查看逆向出的文件</p>
-<p>CFR没有图形界面，但实际使用中往往比JD-GUI更稳定，一些JD-GUI无法正确逆向的文件能够在CFR下逆向成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar inputjarfilename.jar  --outputdir &#x2F;savepath</span><br></pre></td></tr></table></figure>
-<p>之后可以通过其它ide或文本编辑器查看逆向出的文件</p>
-<blockquote>
-<p>5.生成我们自己的.keystore文件</p>
-</blockquote>
-<p>平常我们用的一些重新签名工具里面大都是别人做好的签名文件，这里我们可以生成我们自己独有的签名文件。</p>
-<ul>
-<li>在powershell输入</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias 别名 -keyalg RSA -validity 有效天数 -keystore filename.keystore</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-genkey</td>
-<td>产生证书文件</td>
-</tr>
-<tr>
-<td>-alias</td>
-<td>产生别名</td>
-</tr>
-<tr>
-<td>-keystore</td>
-<td>密钥库名称</td>
-</tr>
-<tr>
-<td>-keyalg</td>
-<td>密钥的算法</td>
-</tr>
-<tr>
-<td>-validity</td>
-<td>证书有效天数</td>
-</tr>
-</tbody></table>
-<p>然后按提示分别输入<br>姓名、组织单位、、城市、省份、国家代码<br>Y确认正确<br>然后设置一个密码（输入的时候不会有反应但是实际上输进去了）<br>回车后会再让你确认一次密码</p>
-<p>之后你就得到了自定义的.keystore密匙文件</p>
-<blockquote>
-<p>6.为打包好的.apk签名</p>
-</blockquote>
-<p>在powershell输入指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore filename.keystore -signedjar outputfile.apk inputfile.apk alise</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-verbose</td>
-<td>输出签名过程的详细信息</td>
-</tr>
-<tr>
-<td>alias</td>
-<td>密匙证书文件的别名</td>
-</tr>
-<tr>
-<td>-keystore</td>
-<td>密匙证书文件位置</td>
-</tr>
-<tr>
-<td>-signedjar</td>
-<td>指定输入输出文件名</td>
-</tr>
-<tr>
-<td>inputfile.apk</td>
-<td>未签名文件</td>
-</tr>
-<tr>
-<td>outputfile.apk</td>
-<td>签名后文件</td>
-</tr>
-</tbody></table>
-<p>如此我们便成功的完成了对apk文件的签名</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AirLongDian">
-      <meta itemprop="description" content="联系作者：QQ：269672173">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AirLongDian's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE02/" class="post-title-link" itemprop="url">如何快速而优雅的解决问题（提问的智慧缩减版）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-15 22:43:07 / 修改时间：22:54:04" itemprop="dateCreated datePublished" datetime="2021-02-15T22:43:07+08:00">2021-02-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE/" itemprop="url" rel="index"><span itemprop="name">计算机协会社课</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="如何快速而优雅的解决问题（提问的智慧缩减版）"><a href="#如何快速而优雅的解决问题（提问的智慧缩减版）" class="headerlink" title="如何快速而优雅的解决问题（提问的智慧缩减版）"></a>如何快速而优雅的解决问题（提问的智慧缩减版）</h2><blockquote>
-<p>注：本文大部分内容引用自《提问的智慧》，结尾附原文档链接</p>
-</blockquote>
-<h4 id="不要随便提问！！"><a href="#不要随便提问！！" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h4 id="不要随便提问！！-1"><a href="#不要随便提问！！-1" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h4 id="不要随便提问！！-2"><a href="#不要随便提问！！-2" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h6 id="在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！"><a href="#在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！" class="headerlink" title="在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！"></a><font color=red>在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！</font></h6><p>请不要过高的估算自己的问题难度，截止2019年，这个世界上有38亿人在互联网上活跃，通常情况下，你们所遇到的问题中的绝大部分都已经有无数的前车之鉴将解决方案糊在了网上！打开浏览器，然后打开谷歌或者百度或者搜狗或者雅虎或者360搜索或者任何其它的搜索引擎（你们有多么多的选择啊），然后搜索你所遇到的问题，（请务必精准简洁的概括你的问题，如果你搜索<strong>“救命啊，我的电脑坏了，有人能帮我吗？xxxx坏了！”</strong>纯属自己作死，请不要说自己是计算机协会的人，谢谢。），通常情况下使用搜索引擎是大部分问题最快捷的解决方式。</p>
-<p>而且通常情况下，软件手册，技术文档，论坛文章作者会更加深切透彻的描述一个问题产生的原理，从而使你学到更多的东西，好比装GCC编译环境，如果你搜索 “GCC 编译环境配置 ”，你会得到很多篇教程并在自己动手的过程中学会GCC环境的配置，但如果你问我“喵，我不会配置GCC环境”，我会从你手里接过电脑然后顺利的配置好环境再递给你。</p>
-<p>下次你还是不会装GCC。</p>
-<p>在你准备要通过电子邮件、新闻群组或者聊天室提出技术问题前，请你务必先做到以下事情：</p>
-<ol>
-<li>尝试在你准备论坛的文章中搜索答案。</li>
-<li>尝试上网搜索以找到答案。</li>
-<li>尝试阅读手册以找到答案。</li>
-<li>尝试阅读常见问题文件（FAQ）以找到答案。</li>
-<li>尝试自己检查或试验以找到答案。</li>
-<li>向你身边的同学老师打听以找到答案。</li>
-<li>如果你是程序开发者，请尝试阅读源代码以找到答案。</li>
-</ol>
-<p>草率的发问只能得到草率的回答，或者根本得不到任何答案。如果你什么都不做就去技术圈提问的话有很大的概率会收到以下两种答复</p>
-<ol>
-<li>RTFW<ul>
-<li>有一个古老而神圣的传统：如果你收到<code>RTFM （Read The Fucking Manual）</code>的回应，回答者认为你<strong>应该去读他妈的手册</strong>。当然，基本上他是对的，你应该去读一读。</li>
-</ul>
-</li>
-<li>STFW<ul>
-<li>RTFM 有一个年轻的亲戚。如果你收到<code>STFW（Search The Fucking Web）</code>的回应，回答者认为你<strong>应该到他妈的网上搜索</strong>。那人多半也是对的，去搜索一下吧。</li>
-</ul>
-</li>
-</ol>
-<p>通常，用这两句之一回答你的人会给你一份包含你需要内容的手册或者一个网址，而且他们打这些字的时候也正在读着。这些答复意味着回答者认为</p>
-<ul>
-<li><strong>你需要的信息非常容易获得</strong>；</li>
-<li><strong>你自己去搜索这些信息比灌给你，能让你学到更多</strong>。</li>
-</ul>
-<p>你不应该因此不爽；<strong>依照技术圈的标准，他已经表示了对你一定程度的关注，而没有对你的要求视而不见</strong>。你应该对他祖母般的慈祥表示感谢。</p>
-<p>而且即使他没有附文档给你，甚至完全没有回复你，你也不应感到气愤。</p>
-<p>绝不要自以为<strong>理应</strong>得到答案，你没有为这种服务支付任何报酬。</p>
-<h1 id="—————————————"><a href="#—————————————" class="headerlink" title="—————————————"></a>—————————————</h1><p>解释：关于一些看起来很无礼的发言：</p>
-<p>很多技术圈子中看似无礼的行为并不是存心冒犯。相反，它是直接了当，一针见血式的交流风格，这种风格更注重解决问题，而不是使人感觉舒服而却模模糊糊。</p>
-<p>如果你觉得被冒犯了，试着平静地反应。如果有人真的做了出格的事，邮件列表、新闻群组或论坛中的前辈多半会招呼他。如果这<strong>没有</strong>发生而你却发火了，那么你发火对象的言语可能在社区中看起来是正常的，而<strong>你</strong>将被视为有错的一方，这将伤害到你获取信息或帮助的机会。</p>
-<p>夸张的讲法是：你要的是“友善”（以上述方式）还是有用？两个里面挑一个。</p>
-<p>当技术圈的某人说你搞砸了，并且（无论多么刺耳）告诉你别再这样做时，他正在为关心<strong>你</strong>和<strong>他的社区</strong>而行动。对他而言，不理你并将你从他的生活中滤掉更简单。如果你无法做到感谢，至少要表现得有点尊严，别大声哀嚎，也别因为自己是个有戏剧性超级敏感的灵魂和自以为有资格的新来者，就指望别人像对待脆弱的洋娃娃那样对你。</p>
-<p>当然，喵在协会和学校里通常不会，喵怎么说也是个学长，而且还要尊重自己喵的设定，大部分时候喵会卖个萌然后让你自己去搜索，但是在喵使用另一个身份的技术圈，我不确定你们是否看见过转发到群里这段聊天记录。</p>
-<p><img src="https://i.loli.net/2020/11/10/mywXaieGKxcWPlu.png" alt="2020-11-10_203835.png"></p>
-<h1 id="———————————————–"><a href="#———————————————–" class="headerlink" title="———————————————–"></a>———————————————–</h1><p>在你确认你尝试了以上各种方法，并花费了至少20分钟以上仍没能解决问题之后，是时候提一个正确的问题来解决自己的疑惑了。</p>
-<p>一个正确的问题是指什么呢？请看以下问题</p>
-<p>救命啊！！！急急急！！！！快帮我看看！！！有人能帮帮我吗？我电脑坏了！！请把解决方法私发到我邮箱！好人一生平安！！</p>
-<p>请问这个问题表达了什么？</p>
-<p>针对这种问题，我的第一反应是：首先你死不了，然后我一点也不着急，你这么问问题没人能帮你，我知道你电脑坏了但是你啥信息都不说我懒得一句句问，发到你私人邮箱别的遇到这问题的人不就看不到解决方法了吗？所以我还是不理你了吧。</p>
-<p>我对要我问你二十个问题才找得出你真正问题的问题没兴趣 —— 我有更重要的事要做呢。在看到这类问题的时候，我的反应通常不外如下三种</p>
-<ul>
-<li>你还有什么要补充的吗？</li>
-<li>真糟糕，希望你能搞定。</li>
-<li>这关我屁事？</li>
-</ul>
-<p>一个正确的问题应该怎样表述呢？</p>
-<p>以我和zed最近遇到的一个问题为例</p>
-<p>首先，问题的最开头或标题处应该以简略但精准的语言表述你遇到的问题</p>
-<blockquote>
-<p> QV2ray连接成功但无法上网</p>
-</blockquote>
-<p>然后在后面加上你所使用的环境，能够找到的报错，以及其它你能提供的信息</p>
-<blockquote>
-<p> Archinux下QV2ray 连接成功但无法上网，vmess无法使用，日志报错<em>read/write</em> on closed pipe；但ssr链接使用正常</p>
-</blockquote>
-<p>然后表示你已经做了哪些努力但仍然无法解决</p>
-<blockquote>
-<p> Archinux下QV2ray 连接成功但无法上网，vmess无法使用，日志报错<em>read/write</em> on closed pipe；但ssr链接使用正常，我通过搜索引擎没有找到相关的资料，试着重装Qv2ray并删除配置文件无效，验证对时显示ntp服务器时间误差为0秒</p>
-</blockquote>
-<p>最后客气的表示希望能得到帮助</p>
-<blockquote>
-<p>Archinux下QV2ray 连接成功但无法上网，vmess无法使用，日志报错<em>read/write</em> on closed pipe；但ssr链接使用正常，我通过搜索引擎没有找到相关的资料，试着重装Qv2ray并删除配置文件无效，验证对时显示ntp服务器时间误差为0秒,请问这个问题大家有解决方案吗？</p>
-</blockquote>
-<p>这样一来大家第一眼就能看到Archlinux，Qv2ray，有所涉猎的人会看一下这个问题自己是否知道，比如看到<em>read/write</em> on closed pipe知道这个人遇到了系统对时错误，再往下看这个人做了很多努力没能解决问题，而且态度很好，我刚好遇到过这个问题，帮他解决一下吧</p>
-<p>而如果你的问题是这样的：</p>
-<p>“救命啊我翻墙翻不出去！我什么都做对了但是它就是不好使，dalao们快出来救救我”</p>
-<p>你会得到怎样的回答就不言而喻了</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md">提问的智慧原文链接</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -499,10 +178,9 @@
       <meta itemprop="name" content="AirLongDian's BLOG">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE01/" class="post-title-link" itemprop="url">C语言快速入门</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          C语言快速入门
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -535,7 +213,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="C语言快速入门"><a href="#C语言快速入门" class="headerlink" title="C语言快速入门"></a><font color=dodgerblue>C语言快速入门</font></h1><blockquote>
+        <h1 id="C语言快速入门"><a href="#C语言快速入门" class="headerlink" title="C语言快速入门"></a><font color=dodgerblue>C语言快速入门</font></h1><blockquote>
 <p>第一部分：一门基础的编程语言</p>
 </blockquote>
 <p>走计算机行业不管哪个方向，会一两门编程语言都是必须的，第一部分讲一下如何快速的掌握一门基础的编程语言。</p>
@@ -680,21 +358,33 @@
 <p>大家有兴趣的话也可以自己写点东西练习一下，比如写个学生信息管理系统什么的，这节课提供的知识是足够的。这里也宣传一下我们的协会，</p>
 <p>追求技术是一场漫长的旅程，很高兴在这里与你们相逢。</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE/" rel="tag"># 计算机协会社课</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE02/" rel="next" title="如何快速而优雅的解决问题（提问的智慧缩减版）">
+      如何快速而优雅的解决问题（提问的智慧缩减版） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -747,6 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">C语言快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%98%AFc%E8%AF%AD%E8%A8%80%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8D%95%E4%BD%8D"><span class="nav-number">1.1.</span> <span class="nav-text">函数是c语言的基本单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BUT%EF%BC%81%EF%BC%81%EF%BC%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E6%8C%87%E9%92%88%E5%91%A2%EF%BC%9F%EF%BC%9F%EF%BC%9F%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">BUT！！！为什么我们需要使用指针呢？？？？</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

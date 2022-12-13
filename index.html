@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-13 09:47:44 / 修改时间：09:56:36" itemprop="dateCreated datePublished" datetime="2022-12-13T09:47:44+08:00">2022-12-13</time>
+              <time title="创建时间：2022-12-13 09:47:44 / 修改时间：11:27:14" itemprop="dateCreated datePublished" datetime="2022-12-13T09:47:44+08:00">2022-12-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,16 +210,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="C-多线程"><a href="#C-多线程" class="headerlink" title="C++多线程"></a>C++多线程</h1><p>[TOC]</p>
-<h2 id="一、-概念"><a href="#一、-概念" class="headerlink" title="一、 概念"></a>一、 概念</h2><h6 id="1-进程"><a href="#1-进程" class="headerlink" title="1. 进程"></a>1. 进程</h6><p>exe的一次运行</p>
-<h6 id="2-线程"><a href="#2-线程" class="headerlink" title="2. 线程"></a>2. 线程</h6><p>一个进程可以有多个线程（但有且只有一个主线程）</p>
-<h2 id="二、-并发实现"><a href="#二、-并发实现" class="headerlink" title="二、 并发实现"></a>二、 并发实现</h2><h6 id="1-多进程"><a href="#1-多进程" class="headerlink" title="1. 多进程"></a>1. 多进程</h6><p>解决进程间通讯</p>
-<h6 id="2-多线程"><a href="#2-多线程" class="headerlink" title="2. 多线程"></a>2. 多线程</h6><p>一个主线程多个子线程实现并发，进程资源在线程间共享</p>
-<h2 id="三、-C-线程创建"><a href="#三、-C-线程创建" class="headerlink" title="三、 C++线程创建"></a>三、 C++线程创建</h2><h3 id="3-1-基本函数创建"><a href="#3-1-基本函数创建" class="headerlink" title="3.1 基本函数创建"></a>3.1 基本函数创建</h3><h4 id="1-包含头文件"><a href="#1-包含头文件" class="headerlink" title="1. 包含头文件"></a>1. 包含头文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="2-创建线程"><a href="#2-创建线程" class="headerlink" title="2. 创建线程"></a>2. 创建线程</h4><p>创建thread对象</p>
+          <h1><span id="c多线程">C++多线程</span></h1><!--toc-->
+<h2><span id="一-概念">一、 概念</span></h2><h6><span id="1-进程">1. 进程</span></h6><p>exe的一次运行</p>
+<h6><span id="2-线程">2. 线程</span></h6><p>一个进程可以有多个线程（但有且只有一个主线程）</p>
+<h2><span id="二-并发实现">二、 并发实现</span></h2><h6><span id="1-多进程">1. 多进程</span></h6><p>解决进程间通讯</p>
+<h6><span id="2-多线程">2. 多线程</span></h6><p>一个主线程多个子线程实现并发，进程资源在线程间共享</p>
+<h2><span id="三-c线程创建">三、 C++线程创建</span></h2><h3><span id="31-基本函数创建">3.1 基本函数创建</span></h3><h4><span id="1-包含头文件">1. 包含头文件</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4><span id="2-创建线程">2. 创建线程</span></h4><p>创建thread对象</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">thread <span class="title">th1</span><span class="params">(func)</span></span>;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>需要后续处理：否则主函数结束会抛异常<h4 id="3-后续处理"><a href="#3-后续处理" class="headerlink" title="3. 后续处理"></a>3. 后续处理</h4></li>
+<li>需要后续处理：否则主函数结束会抛异常<h4><span id="3-后续处理">3. 后续处理</span></h4></li>
 </ul>
 <ol>
 <li>阻塞主线程<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th1.join();</span><br></pre></td></tr></table></figure>
@@ -232,48 +232,48 @@
 </ul>
 <ol start="3">
 <li>判断一个进程是否可以做后续处理<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th1.joinable();</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-类和对象创建"><a href="#3-2-类和对象创建" class="headerlink" title="3.2 类和对象创建"></a>3.2 类和对象创建</h3>重载括号运算符制作函数类，将函数类的对象作为线程参数<h3 id="3-3-Lambda表达式创建"><a href="#3-3-Lambda表达式创建" class="headerlink" title="3.3 Lambda表达式创建"></a>3.3 Lambda表达式创建</h3>将lambda表达式作为参数<h3 id="3-4-带参创建"><a href="#3-4-带参创建" class="headerlink" title="3.4 带参创建"></a>3.4 带参创建</h3>传引用参数需要<code>ref()</code>包装<h3 id="3-5-带智能指针"><a href="#3-5-带智能指针" class="headerlink" title="3.5 带智能指针"></a>3.5 带智能指针</h3>用<code>move()</code>但是之后原智能指针销毁<h3 id="3-6-类成员函数创建"><a href="#3-6-类成员函数创建" class="headerlink" title="3.6 类成员函数创建"></a>3.6 类成员函数创建</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">thread <span class="title">th1</span><span class="params">(成员函数指针，成员函数所属的对象，参数（可能需要包装）)</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="四、异步"><a href="#四、异步" class="headerlink" title="四、异步"></a>四、异步</h2><h4 id="4-1-包含头文件"><a href="#4-1-包含头文件" class="headerlink" title="4.1 包含头文件"></a>4.1 包含头文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="4-2-创建未来返回值对象"><a href="#4-2-创建未来返回值对象" class="headerlink" title="4.2 创建未来返回值对象"></a>4.2 创建未来返回值对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">future</span>&lt;type&gt; fu1;</span><br></pre></td></tr></table></figure>
-<h4 id="4-3-异步运行"><a href="#4-3-异步运行" class="headerlink" title="4.3 异步运行"></a>4.3 异步运行</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1=async(func/lambda)</span><br></pre></td></tr></table></figure></li>
+<h3><span id="32-类和对象创建">3.2 类和对象创建</span></h3>重载括号运算符制作函数类，将函数类的对象作为线程参数<h3><span id="33-lambda表达式创建">3.3 Lambda表达式创建</span></h3>将lambda表达式作为参数<h3><span id="34-带参创建">3.4 带参创建</span></h3>传引用参数需要<code>ref()</code>包装<h3><span id="35-带智能指针">3.5 带智能指针</span></h3>用<code>move()</code>但是之后原智能指针销毁<h3><span id="36-类成员函数创建">3.6 类成员函数创建</span></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">thread <span class="title">th1</span><span class="params">(成员函数指针，成员函数所属的对象，参数（可能需要包装）)</span></span></span><br></pre></td></tr></table></figure>
+<h2><span id="四-异步">四、异步</span></h2><h4><span id="41-包含头文件">4.1 包含头文件</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4><span id="42-创建未来返回值对象">4.2 创建未来返回值对象</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">future</span>&lt;type&gt; fu1;</span><br></pre></td></tr></table></figure>
+<h4><span id="43-异步运行">4.3 异步运行</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1=async(func/lambda)</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
-<li>此时程序分出一个线程执行异步程序，并继续向后执行<h4 id="4-4-取回异步运行结果"><a href="#4-4-取回异步运行结果" class="headerlink" title="4.4 取回异步运行结果"></a>4.4 取回异步运行结果</h4></li>
+<li>此时程序分出一个线程执行异步程序，并继续向后执行<h4><span id="44-取回异步运行结果">4.4 取回异步运行结果</span></h4></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.get()</span><br></pre></td></tr></table></figure>
 <ul>
-<li>此时异步程序若仍未执行完，将阻塞程序至异步程序执行完并取回值<h4 id="4-5-等待异步程序执行完毕但不需要返回结果"><a href="#4-5-等待异步程序执行完毕但不需要返回结果" class="headerlink" title="4.5 等待异步程序执行完毕但不需要返回结果"></a>4.5 等待异步程序执行完毕但不需要返回结果</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.wait()</span><br></pre></td></tr></table></figure>
-<h4 id="4-6-仅等待一段时间（超时检测）"><a href="#4-6-仅等待一段时间（超时检测）" class="headerlink" title="4.6 仅等待一段时间（超时检测）"></a>4.6 仅等待一段时间（超时检测）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.wait_for(chrono时间单位（）)</span><br></pre></td></tr></table></figure></li>
-<li>如超时未执行完毕则返回<code>future_status::timeout</code>,按时执行完毕则返回<code>future_status::ready</code><h4 id="4-7-不异步仅延迟至get时运行"><a href="#4-7-不异步仅延迟至get时运行" class="headerlink" title="4.7 不异步仅延迟至get时运行"></a>4.7 不异步仅延迟至get时运行</h4>将<code>async</code>第一个参数设为<code>std::launch::deferred</code><h4 id="4-8-手动管理线程"><a href="#4-8-手动管理线程" class="headerlink" title="4.8 手动管理线程"></a>4.8 手动管理线程</h4>不使用async而是使用promise<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::promise&lt;type&gt; pr1=promise(func/lambda)</span><br></pre></td></tr></table></figure>
-在传入的可执行体中设置未来值<code>pr1.set_value()</code>，然后在外面<code>get_future</code>获取未来返回值对象，并进一步get获取未来值<h2 id="五、锁"><a href="#五、锁" class="headerlink" title="五、锁"></a>五、锁</h2><h6 id="1-导入头文件"><a href="#1-导入头文件" class="headerlink" title="1. 导入头文件"></a>1. 导入头文件</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h6 id="2-创建锁对象"><a href="#2-创建锁对象" class="headerlink" title="2. 创建锁对象"></a>2. 创建锁对象</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mutex mtx1</span><br><span class="line">timed_mutex tmtx1 <span class="comment">//可以等待一会的锁</span></span><br></pre></td></tr></table></figure>
-<h6 id="3-基本操作"><a href="#3-基本操作" class="headerlink" title="3. 基本操作"></a>3. 基本操作</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mtx1.lock()  <span class="comment">//加锁</span></span><br><span class="line">mtx1.lock()  <span class="comment">//解锁</span></span><br></pre></td></tr></table></figure></li>
-<li>一个锁锁住就不能再锁，后面试图加锁的就会被阻塞至前一线程解锁<h6 id="4-自动解锁"><a href="#4-自动解锁" class="headerlink" title="4. 自动解锁"></a>4. 自动解锁</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">lock_guard <span class="title">gl1</span><span class="params">(mtx1)</span></span></span><br></pre></td></tr></table></figure></li>
+<li>此时异步程序若仍未执行完，将阻塞程序至异步程序执行完并取回值<h4><span id="45-等待异步程序执行完毕但不需要返回结果">4.5 等待异步程序执行完毕但不需要返回结果</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.wait()</span><br></pre></td></tr></table></figure>
+<h4><span id="46-仅等待一段时间超时检测">4.6 仅等待一段时间（超时检测）</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.wait_for(chrono时间单位（）)</span><br></pre></td></tr></table></figure></li>
+<li>如超时未执行完毕则返回<code>future_status::timeout</code>,按时执行完毕则返回<code>future_status::ready</code><h4><span id="47-不异步仅延迟至get时运行">4.7 不异步仅延迟至get时运行</span></h4>将<code>async</code>第一个参数设为<code>std::launch::deferred</code><h4><span id="48-手动管理线程">4.8 手动管理线程</span></h4>不使用async而是使用promise<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::promise&lt;type&gt; pr1=promise(func/lambda)</span><br></pre></td></tr></table></figure>
+在传入的可执行体中设置未来值<code>pr1.set_value()</code>，然后在外面<code>get_future</code>获取未来返回值对象，并进一步get获取未来值<h2><span id="五-锁">五、锁</span></h2><h6><span id="1-导入头文件">1. 导入头文件</span></h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h6><span id="2-创建锁对象">2. 创建锁对象</span></h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mutex mtx1</span><br><span class="line">timed_mutex tmtx1 <span class="comment">//可以等待一会的锁</span></span><br></pre></td></tr></table></figure>
+<h6><span id="3-基本操作">3. 基本操作</span></h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mtx1.lock()  <span class="comment">//加锁</span></span><br><span class="line">mtx1.lock()  <span class="comment">//解锁</span></span><br></pre></td></tr></table></figure></li>
+<li>一个锁锁住就不能再锁，后面试图加锁的就会被阻塞至前一线程解锁<h6><span id="4-自动解锁">4. 自动解锁</span></h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">lock_guard <span class="title">gl1</span><span class="params">(mtx1)</span></span></span><br></pre></td></tr></table></figure></li>
 <li>创建即加锁，离开作用域自动解锁</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">ul1</span><span class="params">(mtx1)</span> <span class="comment">//创建即加锁</span></span></span><br><span class="line"><span class="function">unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">ul1</span><span class="params">(mtx1,defer_lock)</span>  <span class="comment">//创建时不加锁</span></span></span><br><span class="line"><span class="function">unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">ul1</span><span class="params">(mtx1,try_to_lock)</span>  <span class="comment">//创建时尝试加锁但不阻塞</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">try_lock</span><span class="params">()</span> <span class="comment">//尝试加锁</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">try_lock_for</span><span class="params">()</span> <span class="comment">//尝试再一段时间内加锁（timed_mutex）</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">try_lock_until</span><span class="params">()</span> <span class="comment">//尝试在某个时间点之前加锁(timed_mutex)</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">owns_lock</span><span class="params">()</span> <span class="comment">//锁是不是自己的（try_to_lock结果）</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">lock</span><span class="params">()</span> <span class="comment">//手动加锁</span></span></span><br><span class="line">ul1.unlock（） //手动解锁</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>锁所有权转移要用<code>move()</code></p>
-<h6 id="5-读写分离锁"><a href="#5-读写分离锁" class="headerlink" title="5. 读写分离锁"></a>5. 读写分离锁</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shared_mutex sml1 <span class="comment">//创建锁</span></span><br><span class="line">sml1.lock() <span class="comment">//锁写</span></span><br><span class="line">sml1.unlock() <span class="comment">//解锁写</span></span><br><span class="line">sml1.lock_shared() <span class="comment">//读锁</span></span><br><span class="line">sml1.unlock_shared() <span class="comment">//解锁读</span></span><br><span class="line"><span class="function">shared_lock <span class="title">sl1</span><span class="params">(shared_mutexd对象)</span> <span class="comment">//自动解锁（类似unique_lock）</span></span></span><br></pre></td></tr></table></figure></li>
+<h6><span id="5-读写分离锁">5. 读写分离锁</span></h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shared_mutex sml1 <span class="comment">//创建锁</span></span><br><span class="line">sml1.lock() <span class="comment">//锁写</span></span><br><span class="line">sml1.unlock() <span class="comment">//解锁写</span></span><br><span class="line">sml1.lock_shared() <span class="comment">//读锁</span></span><br><span class="line">sml1.unlock_shared() <span class="comment">//解锁读</span></span><br><span class="line"><span class="function">shared_lock <span class="title">sl1</span><span class="params">(shared_mutexd对象)</span> <span class="comment">//自动解锁（类似unique_lock）</span></span></span><br></pre></td></tr></table></figure></li>
 <li><p>读锁可以锁多次，多个线程一起读，但读的时候不能写（计数）</p>
 </li>
 <li><p>多个对象建议每个对象一个锁</p>
 </li>
 </ul>
-<h6 id="6-死锁"><a href="#6-死锁" class="headerlink" title="6. 死锁"></a>6. 死锁</h6><ol>
+<h6><span id="6-死锁">6. 死锁</span></h6><ol>
 <li>一个线程不要同时持有多个锁</li>
 <li>线程的上锁顺序一致</li>
 <li>使用<code>lock(mtx1,mtx2,...)</code>对多个锁上锁可以自动处理上锁顺序确保不产生死锁</li>
 <li>使用<code>scoped_lock sl1(mtx1,mtx2,...)</code>对多个锁上锁可以确保不产生死锁并自动解锁</li>
 <li>单个线程死锁可以用<code>recursice_mutex</code>代替<code>mutex</code>,每次加锁会加一个计数，计数0解锁，但是会有性能损失</li>
 </ol>
-<h2 id="六、条件变量"><a href="#六、条件变量" class="headerlink" title="六、条件变量"></a>六、条件变量</h2><h4 id="1-导入头文件-1"><a href="#1-导入头文件-1" class="headerlink" title="1. 导入头文件"></a>1. 导入头文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="2-创建条件变量对象"><a href="#2-创建条件变量对象" class="headerlink" title="2. 创建条件变量对象"></a>2. 创建条件变量对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condition_variable cv1</span><br></pre></td></tr></table></figure>
-<h4 id="2-等待条件"><a href="#2-等待条件" class="headerlink" title="2. 等待条件"></a>2. 等待条件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv1.wait(锁，可以提供执行体如返回<span class="literal">true</span>才唤醒) <span class="comment">//多个wait被唤醒时锁确保只有一个线程被运行，等待状态中锁会被暂时解锁</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="4-发送唤醒信号（另一线程）"><a href="#4-发送唤醒信号（另一线程）" class="headerlink" title="4. 发送唤醒信号（另一线程）"></a>4. 发送唤醒信号（另一线程）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv1.notify_one() <span class="comment">//唤醒一个wait的线程</span></span><br><span class="line">cv1.notify_all() <span class="comment">//唤醒所有wait的线程</span></span><br></pre></td></tr></table></figure>
+<h2><span id="六-条件变量">六、条件变量</span></h2><h4><span id="1-导入头文件">1. 导入头文件</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4><span id="2-创建条件变量对象">2. 创建条件变量对象</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condition_variable cv1</span><br></pre></td></tr></table></figure>
+<h4><span id="2-等待条件">2. 等待条件</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv1.wait(锁，可以提供执行体如返回<span class="literal">true</span>才唤醒) <span class="comment">//多个wait被唤醒时锁确保只有一个线程被运行，等待状态中锁会被暂时解锁</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4><span id="4-发送唤醒信号另一线程">4. 发送唤醒信号（另一线程）</span></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv1.notify_one() <span class="comment">//唤醒一个wait的线程</span></span><br><span class="line">cv1.notify_all() <span class="comment">//唤醒所有wait的线程</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>condition_variable</code>只支持<code>unique_lock</code>，其他锁可以用<code>condition_variable_any</code></li>
-<li>也有<code>wait_for()</code>和<code>wait_until()</code>,会返回布尔值作为等待结果<h2 id="七、原子操作"><a href="#七、原子操作" class="headerlink" title="七、原子操作"></a>七、原子操作</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atomic&lt;type&gt; name</span><br></pre></td></tr></table></figure>
+<li>也有<code>wait_for()</code>和<code>wait_until()</code>,会返回布尔值作为等待结果<h2><span id="七-原子操作">七、原子操作</span></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atomic&lt;type&gt; name</span><br></pre></td></tr></table></figure>
 放弃分解和乱序优化，确保对该变量的操作是一次性的（不会有其他线程在插入分解后的执行序列）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+=</span><br><span class="line">-=</span><br><span class="line">*=</span><br><span class="line">&amp;=</span><br><span class="line">|=</span><br></pre></td></tr></table></figure></li>
 </ul>
 
@@ -343,10 +343,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="更改开机引导LOGO（无需下载BIOS文件）"><a href="#更改开机引导LOGO（无需下载BIOS文件）" class="headerlink" title="更改开机引导LOGO（无需下载BIOS文件）"></a>更改开机引导LOGO（无需下载BIOS文件）</h1><p>作者：BILIBILI:万能的小奇喵    </p>
-<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><ul>
+          <h1><span id="更改开机引导logo无需下载bios文件">更改开机引导LOGO（无需下载BIOS文件）</span></h1><p>作者：BILIBILI:万能的小奇喵    </p>
+<h3><span id="1-前期准备">1. 前期准备</span></h3><ul>
 <li><p>原理：<br>从电脑的 FLASH ROM 中提取 bios 后进行修改再刷写回 FLASH ROM</p>
-<h4 id="警告：BIOS操作有一定风险，请谨慎决定"><a href="#警告：BIOS操作有一定风险，请谨慎决定" class="headerlink" title="警告：BIOS操作有一定风险，请谨慎决定"></a><font color=red>警告：BIOS操作有一定风险，请谨慎决定</font></h4></li>
+<h4><span id="警告bios操作有一定风险请谨慎决定"><font color="red">警告：BIOS操作有一定风险，请谨慎决定</font></span></h4></li>
 <li><p>需要准备的工具</p>
 </li>
 </ul>
@@ -366,28 +366,28 @@
 <td>用于替换 BIOS 里的开机引导 LOGO</td>
 </tr>
 </tbody></table>
-<h3 id="2-提取BIOS"><a href="#2-提取BIOS" class="headerlink" title="2. 提取BIOS"></a>2. 提取BIOS</h3><ol>
+<h3><span id="2-提取bios">2. 提取BIOS</span></h3><ol>
 <li>（可选）新建一个空的工作文件夹【本文中为<code>D</code>盘根目录下的 <code>BIOSWORKSPACE</code>文件夹】</li>
 <li>（可选）在<code>BIOSWORKSPACE</code> 中新建一个文件夹用于存放 FPTW工具【本文中为FPTW64】</li>
 <li>将 FPTW64 解压到<code>FPTW64</code></li>
 <li>按下<kbd>Win</kbd>+<kbd>x</kbd>，选择 <code>Windows终端（管理员）</code>【如果你的系统是 Windows10 则选择 Windows PowerShell（管理员）】</li>
 <li>使用<code>cd</code>指令切换到 FPTW 目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd D:\BIOSWORKSPACE\FPTW64</span><br></pre></td></tr></table></figure></li>
 <li>使用 FPTW64 提取 BIOS 并保存为文件【本文中为BIOS.bin】<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\fptw64.exe -d ..\BIOS.bin -bios</span><br></pre></td></tr></table></figure>
-<h3 id="3-替换图片"><a href="#3-替换图片" class="headerlink" title="3. 替换图片"></a>3. 替换图片</h3></li>
+<h3><span id="3-替换图片">3. 替换图片</span></h3></li>
 <li>点击<kbd>Load Image</kbd></li>
 <li>文件类型选择为<code>All Files (*.*)</code></li>
 <li>选择上一步骤保存的<code>BIOS.bin</code></li>
-<li>正常情况下 Available Images 栏应当会识别出 BIOS 文件中的启动 Logo 图片<h4 id="警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸-BIOS-就只能网购编程器和夹子线拆修了"><a href="#警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸-BIOS-就只能网购编程器和夹子线拆修了" class="headerlink" title="警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸 BIOS 就只能网购编程器和夹子线拆修了"></a><font color=red>警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸 BIOS 就只能网购编程器和夹子线拆修了</font></h4></li>
+<li>正常情况下 Available Images 栏应当会识别出 BIOS 文件中的启动 Logo 图片<h4><span id="警告如果此步骤失败请勿进行下一步骤否则一旦刷炸-bios-就只能网购编程器和夹子线拆修了"><font color="red">警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸 BIOS 就只能网购编程器和夹子线拆修了</font></span></h4></li>
 <li>（可选）点击<kbd> Save Logo</kbd>将BIOS内的原 LOGO 备份，以备将来哪天想换回去。</li>
 <li>点击<kbd>Browse</kbd>选择一张jpg或bmp格式的图片，大小在 800x600 以内的 jpg 格式图片</li>
 <li>点击<kbd>Replace Logo</kbd></li>
 <li>点击<kbd>Save Image As</kbd>,保存修改后的文件到工作目录【本文中保存为 BIOSRL】</li>
 </ol>
-<h3 id="4-刷入修改后的BIOS"><a href="#4-刷入修改后的BIOS" class="headerlink" title="4. 刷入修改后的BIOS"></a>4. 刷入修改后的BIOS</h3><ol>
+<h3><span id="4-刷入修改后的bios">4. 刷入修改后的BIOS</span></h3><ol>
 <li>按下<kbd>Win</kbd>+<kbd>x</kbd>，选择 <code>Windows终端（管理员）</code>【如果你的系统是 Windows10 则选择 Windows PowerShell（管理员）】</li>
 <li>使用<code>cd</code>指令切换到 FPTW 目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd D:\BIOSWORKSPACE\FPTW64</span><br></pre></td></tr></table></figure></li>
 <li>使用 FPTW64 刷入修改后的BIOS【本文中为BIOSRL.bin】<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\fptw64.exe -f ..\BIOSRL.bin -bios</span><br></pre></td></tr></table></figure>
-<h3 id="5-重启"><a href="#5-重启" class="headerlink" title="5.重启"></a>5.重启</h3>重启查看替换后的显示效果，重复以上步骤调整至满意</li>
+<h3><span id="5重启">5.重启</span></h3>重启查看替换后的显示效果，重复以上步骤调整至满意</li>
 </ol>
 
       
@@ -456,21 +456,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Windows11-安装完全教程"><a href="#Windows11-安装完全教程" class="headerlink" title="Windows11 安装完全教程"></a>Windows11 安装完全教程</h1><h3 id="1-如何获得Windows11镜像"><a href="#1-如何获得Windows11镜像" class="headerlink" title="1. 如何获得Windows11镜像"></a>1. 如何获得Windows11镜像</h3><ol>
+          <h1><span id="windows11-安装完全教程">Windows11 安装完全教程</span></h1><h3><span id="1-如何获得windows11镜像">1. 如何获得Windows11镜像</span></h3><ol>
 <li>微软官方网站</li>
 <li><a target="_blank" rel="noopener" href="https://next.itellyou.cn/">https://next.itellyou.cn/</a></li>
-<li>[百度网盘]链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Bx62ecFj_fKh-3wi0jpJqQ">https://pan.baidu.com/s/1Bx62ecFj_fKh-3wi0jpJqQ</a><br>提取码：laxm <h3 id="2-如何制作官方原版镜像的USB启动盘"><a href="#2-如何制作官方原版镜像的USB启动盘" class="headerlink" title="2. 如何制作官方原版镜像的USB启动盘"></a>2. 如何制作官方原版镜像的USB启动盘</h3></li>
+<li>[百度网盘]链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Bx62ecFj_fKh-3wi0jpJqQ">https://pan.baidu.com/s/1Bx62ecFj_fKh-3wi0jpJqQ</a><br>提取码：laxm <h3><span id="2-如何制作官方原版镜像的usb启动盘">2. 如何制作官方原版镜像的USB启动盘</span></h3></li>
 <li>下载<a target="_blank" rel="noopener" href="https://rufus.ie/zh/">RUFUS</a></li>
 <li>选择U盘和下载的ISO镜像</li>
 <li>其它默认，点击开始，等待完成</li>
 </ol>
-<h3 id="3-修改BIOS，开启安全启动"><a href="#3-修改BIOS，开启安全启动" class="headerlink" title="3. 修改BIOS，开启安全启动"></a>3. 修改BIOS，开启安全启动</h3><ol>
+<h3><span id="3-修改bios开启安全启动">3. 修改BIOS，开启安全启动</span></h3><ol>
 <li>重启按指定按键进入BIOS（跟主板型号有关，一般是<kbd>ESC</kbd>或者<kbd>F2</kbd>或者<kbd>Del</kbd>或者<kbd>F12</kbd>）</li>
 <li>关闭Secure boot</li>
 <li>打开USB CSM</li>
 <li>把USB启动项设为第一个</li>
 </ol>
-<h3 id="4-显示这台电脑无法运行Windows11"><a href="#4-显示这台电脑无法运行Windows11" class="headerlink" title="4.显示这台电脑无法运行Windows11"></a>4.显示这台电脑无法运行Windows11</h3><ol>
+<h3><span id="4显示这台电脑无法运行windows11">4.显示这台电脑无法运行Windows11</span></h3><ol>
 <li>按下<kbd>Win</kbd>+<kbd>R</kbd>打开运行框</li>
 <li>输入<code>regedit</code>打开注册表编辑器</li>
 <li>找到<code>HKEY_LOCAL_MACHINE\SYSTEM\Setup</code>，在该项目新建一个项叫做<code>LabConfig</code></li>
@@ -480,14 +480,14 @@
 <li> 退出注册表编辑器</li>
 <li> 回到显示这台电脑无法运行Win11的页面，点左上角返回到上一页，再重新点下一步即可跳过验证</li>
 </ol>
-<h3 id="5-分区"><a href="#5-分区" class="headerlink" title="5.分区"></a>5.分区</h3><ol>
+<h3><span id="5分区">5.分区</span></h3><ol>
 <li>一两句说不清楚，大佬按自己需求分，小白直接选全删除每个硬盘建一个分区完事</li>
 </ol>
-<h3 id="6-安装设置"><a href="#6-安装设置" class="headerlink" title="6.安装设置"></a>6.安装设置</h3><ol>
+<h3><span id="6安装设置">6.安装设置</span></h3><ol>
 <li>如果你没有微软账户建议断网安装</li>
 <li>大佬按需设置，小白建议直接默认</li>
 </ol>
-<h3 id="7-驱动安装"><a href="#7-驱动安装" class="headerlink" title="7.驱动安装"></a>7.驱动安装</h3><ol>
+<h3><span id="7驱动安装">7.驱动安装</span></h3><ol>
 <li>先连上网等一段时间（与网速有关），win11会自动安装绝大部分驱动</li>
 <li>win11没能自动安装的驱动可以去自己电脑的官方网站或者客服处索要驱动</li>
 </ol>
@@ -558,7 +558,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="可能是最专业的面向萌新机械键盘选购指导"><a href="#可能是最专业的面向萌新机械键盘选购指导" class="headerlink" title="可能是最专业的面向萌新机械键盘选购指导"></a>可能是最专业的面向萌新机械键盘选购指导</h1><p>对于对外设缺乏了解的初入者而言，想要从琳琅满目的各种键盘中选购出适合自己需求的一款似乎是一件十分复杂的事。</p>
+          <h1><span id="可能是最专业的面向萌新机械键盘选购指导">可能是最专业的面向萌新机械键盘选购指导</span></h1><p>对于对外设缺乏了解的初入者而言，想要从琳琅满目的各种键盘中选购出适合自己需求的一款似乎是一件十分复杂的事。</p>
 <p>本篇文章致力于以较为“专业”的角度为初入者对比剖析，让初入者能够初步了解一些基础并简单的“按需定制”出最适合自己的第一板键盘。</p>
 <p>要定制出自己的键盘需求，首先我们需要对键盘的大体组成有一定的了解——就新人而言，可以大体先划分为【键帽、轴体、定位板、pcb、外壳、线】六个部分，以下我们将逐部分讲解并提供选择建议。</p>
 <blockquote>
@@ -742,10 +742,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Git简明教程"><a href="#Git简明教程" class="headerlink" title="Git简明教程"></a>Git简明教程</h1><p><img src="https://i.loli.net/2021/02/27/QWVMKGvEspFelx4.png" alt="image.png"></p>
-<h3 id="1-什么是git"><a href="#1-什么是git" class="headerlink" title="1. 什么是git"></a>1. 什么是git</h3><p>Git是目前世界上最先进的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。分布式相比于集中式的最大区别在于开发者可以提交到本地，每个开发者通过克隆（git clone），在本地机器上拷贝一个完整的Git仓库。</p>
+          <h1><span id="git简明教程">Git简明教程</span></h1><p><img src="https://i.loli.net/2021/02/27/QWVMKGvEspFelx4.png" alt="image.png"></p>
+<h3><span id="1-什么是git">1. 什么是git</span></h3><p>Git是目前世界上最先进的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。分布式相比于集中式的最大区别在于开发者可以提交到本地，每个开发者通过克隆（git clone），在本地机器上拷贝一个完整的Git仓库。</p>
 <p><strong>概括：</strong>git是一个项目版本管理工具，用来合作开发和做版本迭代以及必要的时候进行方便的版本回滚。</p>
-<h3 id="2-git本地基本操作"><a href="#2-git本地基本操作" class="headerlink" title="2. git本地基本操作"></a>2. git本地基本操作</h3><ol>
+<h3><span id="2-git本地基本操作">2. git本地基本操作</span></h3><ol>
 <li>初始化（生成）一个本地git仓库<br>新建一个目录（文件夹），并在其中打开终端，执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></li>
 <li>把修改后的文件添加到暂存区<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add filename	&#x2F;&#x2F;添加filename到暂存</span><br><span class="line">git add .	&#x2F;&#x2F;添加当前目录（添加文件夹内所有文件）到暂存区</span><br></pre></td></tr></table></figure></li>
 <li>把暂存区内的文件提交成一个新的版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;message&quot;	&#x2F;&#x2F;把暂存区提交为一个新版本，标注信息，信息为message</span><br></pre></td></tr></table></figure></li>
@@ -755,7 +755,7 @@
 <li>切换分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout branchname	&#x2F;&#x2F;切换到branchname分支</span><br></pre></td></tr></table></figure></li>
 <li>查看提交历史<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline	&#x2F;&#x2F;查询历史（简略信息）</span><br><span class="line">git log	&#x2F;&#x2F;查询历史（详细）</span><br><span class="line">git log --oneline	&#x2F;&#x2F;查询历史（简略信息）(生成图像)</span><br></pre></td></tr></table></figure></li>
 <li>分支合并<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge branchname	&#x2F;&#x2F;把branchname分支合并到当前分支</span><br></pre></td></tr></table></figure></li>
-<li>冲突解决<br>合并后修改冲突的文件后提交一个新版本<h3 id="3-远程托管操作"><a href="#3-远程托管操作" class="headerlink" title="3.远程托管操作"></a>3.远程托管操作</h3></li>
+<li>冲突解决<br>合并后修改冲突的文件后提交一个新版本<h3><span id="3远程托管操作">3.远程托管操作</span></h3></li>
 <li>添加远程仓库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin links	&#x2F;&#x2F;添加远程仓库links并且起名为origin（自己随便起）</span><br></pre></td></tr></table></figure></li>
 <li>推送更新<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master	&#x2F;&#x2F;把master分支推送到origin（上面设置的名字）</span><br></pre></td></tr></table></figure></li>
 <li>拉取更新<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master	&#x2F;&#x2F;把远程仓库origin的master分支拉取到本地</span><br></pre></td></tr></table></figure></li>
@@ -828,7 +828,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="PC下安卓逆向拆包编译打包与重新签名"><a href="#PC下安卓逆向拆包编译打包与重新签名" class="headerlink" title="PC下安卓逆向拆包编译打包与重新签名"></a>PC下安卓逆向拆包编译打包与重新签名</h1><blockquote>
+          <h1><span id="pc下安卓逆向拆包编译打包与重新签名">PC下安卓逆向拆包编译打包与重新签名</span></h1><blockquote>
 <p>1.安装jdk开发环境并设置环境变量</p>
 </blockquote>
 <ol>
@@ -850,7 +850,7 @@
 <li>执行拆包/打包命令</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar d filename.apk&#x2F;&#x2F;拆包</span><br><span class="line">java -jar jarfilename.jar b flodername&#x2F;&#x2F;打包</span><br></pre></td></tr></table></figure>
-<h2 id="注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息"><a href="#注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息" class="headerlink" title="注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息"></a><font color=red>注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></h2><blockquote>
+<h2><span id="注意打包前最好删除-meta-inf-文件夹这里面是旧的安装包签名信息"><font color="red">注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></span></h2><blockquote>
 <p>3.使用dex2jar将dex文件转换为jar格式</p>
 </blockquote>
 <p>在将apk逆向拆包后，apktool会将里面的dex文件逆向为可编辑的smail文件，但是smail的语法比较奇怪，并不是很适合大多数人的阅读习惯，因此我们可以</p>
@@ -1010,10 +1010,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="如何快速而优雅的解决问题（提问的智慧缩减版）"><a href="#如何快速而优雅的解决问题（提问的智慧缩减版）" class="headerlink" title="如何快速而优雅的解决问题（提问的智慧缩减版）"></a>如何快速而优雅的解决问题（提问的智慧缩减版）</h2><blockquote>
+          <h2><span id="如何快速而优雅的解决问题提问的智慧缩减版">如何快速而优雅的解决问题（提问的智慧缩减版）</span></h2><blockquote>
 <p>注：本文大部分内容引用自《提问的智慧》，结尾附原文档链接</p>
 </blockquote>
-<h4 id="不要随便提问！！"><a href="#不要随便提问！！" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h4 id="不要随便提问！！-1"><a href="#不要随便提问！！-1" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h4 id="不要随便提问！！-2"><a href="#不要随便提问！！-2" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h6 id="在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！"><a href="#在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！" class="headerlink" title="在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！"></a><font color=red>在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！</font></h6><p>请不要过高的估算自己的问题难度，截止2019年，这个世界上有38亿人在互联网上活跃，通常情况下，你们所遇到的问题中的绝大部分都已经有无数的前车之鉴将解决方案糊在了网上！打开浏览器，然后打开谷歌或者百度或者搜狗或者雅虎或者360搜索或者任何其它的搜索引擎（你们有多么多的选择啊），然后搜索你所遇到的问题，（请务必精准简洁的概括你的问题，如果你搜索<strong>“救命啊，我的电脑坏了，有人能帮我吗？xxxx坏了！”</strong>纯属自己作死，请不要说自己是计算机协会的人，谢谢。），通常情况下使用搜索引擎是大部分问题最快捷的解决方式。</p>
+<h4><span id="不要随便提问"><font color="red">不要随便提问！！</font></span></h4><h4><span id="不要随便提问"><font color="red">不要随便提问！！</font></span></h4><h4><span id="不要随便提问"><font color="red">不要随便提问！！</font></span></h4><h6><span id="在各种解决基本技术问题的方式里在qq群或者私聊里提问是你所能操作的方式里最慢效率最低成本最高而且你能学到东西最少的解决方式"><font color="red">在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！</font></span></h6><p>请不要过高的估算自己的问题难度，截止2019年，这个世界上有38亿人在互联网上活跃，通常情况下，你们所遇到的问题中的绝大部分都已经有无数的前车之鉴将解决方案糊在了网上！打开浏览器，然后打开谷歌或者百度或者搜狗或者雅虎或者360搜索或者任何其它的搜索引擎（你们有多么多的选择啊），然后搜索你所遇到的问题，（请务必精准简洁的概括你的问题，如果你搜索<strong>“救命啊，我的电脑坏了，有人能帮我吗？xxxx坏了！”</strong>纯属自己作死，请不要说自己是计算机协会的人，谢谢。），通常情况下使用搜索引擎是大部分问题最快捷的解决方式。</p>
 <p>而且通常情况下，软件手册，技术文档，论坛文章作者会更加深切透彻的描述一个问题产生的原理，从而使你学到更多的东西，好比装GCC编译环境，如果你搜索 “GCC 编译环境配置 ”，你会得到很多篇教程并在自己动手的过程中学会GCC环境的配置，但如果你问我“喵，我不会配置GCC环境”，我会从你手里接过电脑然后顺利的配置好环境再递给你。</p>
 <p>下次你还是不会装GCC。</p>
 <p>在你准备要通过电子邮件、新闻群组或者聊天室提出技术问题前，请你务必先做到以下事情：</p>
@@ -1045,14 +1045,14 @@
 <p>你不应该因此不爽；<strong>依照技术圈的标准，他已经表示了对你一定程度的关注，而没有对你的要求视而不见</strong>。你应该对他祖母般的慈祥表示感谢。</p>
 <p>而且即使他没有附文档给你，甚至完全没有回复你，你也不应感到气愤。</p>
 <p>绝不要自以为<strong>理应</strong>得到答案，你没有为这种服务支付任何报酬。</p>
-<h1 id="—————————————"><a href="#—————————————" class="headerlink" title="—————————————"></a>—————————————</h1><p>解释：关于一些看起来很无礼的发言：</p>
+<h1><span id>—————————————</span></h1><p>解释：关于一些看起来很无礼的发言：</p>
 <p>很多技术圈子中看似无礼的行为并不是存心冒犯。相反，它是直接了当，一针见血式的交流风格，这种风格更注重解决问题，而不是使人感觉舒服而却模模糊糊。</p>
 <p>如果你觉得被冒犯了，试着平静地反应。如果有人真的做了出格的事，邮件列表、新闻群组或论坛中的前辈多半会招呼他。如果这<strong>没有</strong>发生而你却发火了，那么你发火对象的言语可能在社区中看起来是正常的，而<strong>你</strong>将被视为有错的一方，这将伤害到你获取信息或帮助的机会。</p>
 <p>夸张的讲法是：你要的是“友善”（以上述方式）还是有用？两个里面挑一个。</p>
 <p>当技术圈的某人说你搞砸了，并且（无论多么刺耳）告诉你别再这样做时，他正在为关心<strong>你</strong>和<strong>他的社区</strong>而行动。对他而言，不理你并将你从他的生活中滤掉更简单。如果你无法做到感谢，至少要表现得有点尊严，别大声哀嚎，也别因为自己是个有戏剧性超级敏感的灵魂和自以为有资格的新来者，就指望别人像对待脆弱的洋娃娃那样对你。</p>
 <p>当然，喵在协会和学校里通常不会，喵怎么说也是个学长，而且还要尊重自己喵的设定，大部分时候喵会卖个萌然后让你自己去搜索，但是在喵使用另一个身份的技术圈，我不确定你们是否看见过转发到群里这段聊天记录。</p>
 <p><img src="https://i.loli.net/2020/11/10/mywXaieGKxcWPlu.png" alt="2020-11-10_203835.png"></p>
-<h1 id="———————————————–"><a href="#———————————————–" class="headerlink" title="———————————————–"></a>———————————————–</h1><p>在你确认你尝试了以上各种方法，并花费了至少20分钟以上仍没能解决问题之后，是时候提一个正确的问题来解决自己的疑惑了。</p>
+<h1><span id>———————————————–</span></h1><p>在你确认你尝试了以上各种方法，并花费了至少20分钟以上仍没能解决问题之后，是时候提一个正确的问题来解决自己的疑惑了。</p>
 <p>一个正确的问题是指什么呢？请看以下问题</p>
 <p>救命啊！！！急急急！！！！快帮我看看！！！有人能帮帮我吗？我电脑坏了！！请把解决方法私发到我邮箱！好人一生平安！！</p>
 <p>请问这个问题表达了什么？</p>
@@ -1153,14 +1153,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="C语言快速入门"><a href="#C语言快速入门" class="headerlink" title="C语言快速入门"></a><font color=dodgerblue>C语言快速入门</font></h1><blockquote>
+          <h1><span id="c语言快速入门"><font color="dodgerblue">C语言快速入门</font></span></h1><blockquote>
 <p>第一部分：一门基础的编程语言</p>
 </blockquote>
 <p>走计算机行业不管哪个方向，会一两门编程语言都是必须的，第一部分讲一下如何快速的掌握一门基础的编程语言。</p>
 <p>这里以c语言作为讲解对象</p>
 <p>首先我们要明晰一个基本的概念，就是模块化<br>c语言是一个模块化了的语言，这个模块化体现在很多方面，比如函数，比如结构体，比如多文件。</p>
 <p>首先说一下函数</p>
-<h2 id="函数是c语言的基本单位"><a href="#函数是c语言的基本单位" class="headerlink" title="函数是c语言的基本单位"></a><font color=orange>函数是c语言的基本单位</font></h2><p>一个c语言程序，就是由一个个变量拼成结构体，一个个结构体与函数拼成文件，最后再由一个个文件拼成最后的整个程序</p>
+<h2><span id="函数是c语言的基本单位"><font color="orange">函数是c语言的基本单位</font></span></h2><p>一个c语言程序，就是由一个个变量拼成结构体，一个个结构体与函数拼成文件，最后再由一个个文件拼成最后的整个程序</p>
 <p>那么函数是怎么样的呢？</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    <span class="comment">//代码内容    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这就是一个最简化的函数（当然我们通常不用void）</p>
@@ -1214,8 +1214,8 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(循环条件)&#123;    <span class="comment">//代码内容&#125;</span></span><br></pre></td></tr></table></figure>
 <p>while循环的结构是这样的，首先判断循环条件是不是成立，例如循环条件是变量a&gt;=2,那么当a大于等于2的时候，就会执行代码内容一次，然后再次判断a是不是还大于等于2，如果是的话再执行一次。直到有一次发现a不再大于等于2了，才结束循环开始执行循环外面的内容。</p>
 <p>这样一来的话，实际上也就是说，我们在写这种循环的时候，里面一定要写改变循环条件的代码，否则循环条件一直不变就变成死循环了。</p>
-<p>while循环是先判断然后才决定执不执行的，所以while循环最少会执行0次，也就是说<font color=gold>如果一开始条件就不成立的话就一次都不执行。</font></p>
-<p><font color=red>与之相对的</font>是do。。。while循环</p>
+<p>while循环是先判断然后才决定执不执行的，所以while循环最少会执行0次，也就是说<font color="gold">如果一开始条件就不成立的话就一次都不执行。</font></p>
+<p><font color="red">与之相对的</font>是do。。。while循环</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;    <span class="comment">//代码内容&#125;while()</span></span><br></pre></td></tr></table></figure>
 <p>do。。。while和while相反，dowhile是先做了再说，做一遍到做完以后再判断，是不是条件成立 ，条件成立的话继续循环，条件不成立的话到此为止，继续往下执行，do while循环是至少会执行一次的循环。</p>
 <p>与while系列循环用的同样多的就是for循环了</p>
@@ -1240,7 +1240,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 数组名[数组长度]</span><br></pre></td></tr></table></figure>
 <p>可以通过a[0-99]来分别使用这100个数据，就不用写100遍声明变量了，而且如果我们要查找的数有好几个特点，还可以使用二维或者多维数组。</p>
 <p>比如a[1][2][3][4][5][6][7]就是七维数组里第二组的第三小组的第四小组的第五小组的第六小组的第七小组的第八个数</p>
-<p>这里要注意<font color=red>数组里面排序序号是从零开始的，第一个内容的编号是0，所以数组名加数字实际访问到位置是数字加一的位置存的数据。</font></p>
+<p>这里要注意<font color="red">数组里面排序序号是从零开始的，第一个内容的编号是0，所以数组名加数字实际访问到位置是数字加一的位置存的数据。</font></p>
 <p>从本质上而言，数组其实就是一种指针的应用方式。</p>
 <blockquote>
 <p>指针</p>
@@ -1269,7 +1269,7 @@
 <p>前者，b修改了卷子上的数值，a的卷子没事，因为b只是抄走了一个数据</p>
 <p>后者，b修改了卷子上的数值，a惊叫一声：卧槽你把我卷子改了干啥！！！</p>
 <p>这就是使用变量的值和使用变量的指针的区别</p>
-<h2 id="BUT！！！为什么我们需要使用指针呢？？？？"><a href="#BUT！！！为什么我们需要使用指针呢？？？？" class="headerlink" title="BUT！！！为什么我们需要使用指针呢？？？？"></a>BUT！！！为什么我们需要使用指针呢？？？？</h2><p>当然是因为**<font color=red>有些时候我们必须使用指针!</font>**</p>
+<h2><span id="but为什么我们需要使用指针呢">BUT！！！为什么我们需要使用指针呢？？？？</span></h2><p>当然是因为**<font color="red">有些时候我们必须使用指针!</font>**</p>
 <p>举个糖炒栗子！比如我们想要在某个函数里修改函数外的值的时候，我们就必须得使用指针。</p>
 <p>这里我们就需要一点关于函数调用、形参与实参的知识。</p>
 <p>有些时候我们要用的函数会需要传入一些数值，比如我们写一个求和的函数</p>

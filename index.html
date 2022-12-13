@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-13 20:23:44 / 修改时间：20:45:24" itemprop="dateCreated datePublished" datetime="2022-12-13T20:23:44+08:00">2022-12-13</time>
+              <time title="创建时间：2022-12-13 20:23:44 / 修改时间：20:55:12" itemprop="dateCreated datePublished" datetime="2022-12-13T20:23:44+08:00">2022-12-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,19 +210,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="网络编程-1"><a href="#网络编程-1" class="headerlink" title="网络编程(1)"></a>网络编程(1)</h1><h2 id="一-网络基础知识"><a href="#一-网络基础知识" class="headerlink" title="一. 网络基础知识"></a>一. 网络基础知识</h2><h3 id="1-网络分层"><a href="#1-网络分层" class="headerlink" title="1.  网络分层"></a>1.  网络分层</h3><ol>
+          <span id="more"></span>
+<h1 id="网络编程-1"><a href="#网络编程-1" class="headerlink" title="网络编程(1)"></a>网络编程(1)</h1><h2 id="一-网络基础知识"><a href="#一-网络基础知识" class="headerlink" title="一. 网络基础知识"></a>一. 网络基础知识</h2><h3 id="1-网络分层"><a href="#1-网络分层" class="headerlink" title="1.  网络分层"></a>1.  网络分层</h3><ol>
 <li>四层 <ol>
 <li>应用层<ol>
 <li>ping</li>
-<li>telent
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/13/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(1)/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<li>telent</li>
+<li>OSPF</li>
+<li>DNS</li>
+</ol>
+</li>
+<li>传输层<ol>
+<li>TCP</li>
+<li>UDP</li>
+</ol>
+</li>
+<li>网络层<ol>
+<li>ICMP</li>
+<li>IP</li>
+</ol>
+</li>
+<li>数据链路层<ol>
+<li>ARP</li>
+<li>Data Link</li>
+<li>RARP</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>七层<ol>
+<li>应用层</li>
+<li>表示层</li>
+<li>会话层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>物理层 <h3 id="2-IP地址"><a href="#2-IP地址" class="headerlink" title="2.  IP地址"></a>2.  IP地址</h3></li>
+</ol>
+</li>
+<li>ipv4<ol>
+<li>点分十进制，每段一字节</li>
+<li>四字节</li>
+</ol>
+</li>
+<li>ipv6<ol>
+<li>冒号分隔16进制，每段二字节</li>
+<li>十六字节<h3 id="3-端口"><a href="#3-端口" class="headerlink" title="3. 端口"></a>3. 端口</h3>16位整数（0-65535）<h3 id="4-字节序"><a href="#4-字节序" class="headerlink" title="4. 字节序"></a>4. 字节序</h3></li>
+</ol>
+</li>
+<li>大端(网络字节序)<ol>
+<li>高位地址存低位数据</li>
+</ol>
+</li>
+<li>小端（主机字节序）<ol>
+<li>高位地址存高位数据<h4 id="4-1-转序函数"><a href="#4-1-转序函数" class="headerlink" title="4.1 转序函数"></a>4.1 转序函数</h4><h5 id="1-整数转序"><a href="#1-整数转序" class="headerlink" title="1. 整数转序"></a>1. 整数转序</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line">htons() <span class="comment">//16位主机到网络（序）转换</span></span><br><span class="line">htonl() <span class="comment">//32位主机到网络（序）转换</span></span><br><span class="line">ntohs() <span class="comment">//16位网络到主机（序）转换</span></span><br><span class="line">ntohl() <span class="comment">//32位网络到主机（序）转换</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-IP地址转序"><a href="#2-IP地址转序" class="headerlink" title="2. IP地址转序"></a>2. IP地址转序</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inet_pton(地址类型，地址字符串，用于输出的内存指针) \\IP地址转网络序</span><br><span class="line">inet_ntop(地址类型，网络序字符串，用于输出的字符串指针，字符串指针指向内存的大小) \\网络序转IP地址，调用成功返回字符串指针，失败返回null</span><br><span class="line">inet_addr(字符串) \\IP转网络序（仅ipv4）</span><br><span class="line">inet_ntoa(结构体) \\网络序转ip（仅ipv4）</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>地址类型：<code>AF_INET</code>(ipv4),<code>AF_INET6</code>(ipv6)</li>
+</ul>
+
       
     </div>
 
@@ -266,7 +315,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-13 09:47:44 / 修改时间：20:46:24" itemprop="dateCreated datePublished" datetime="2022-12-13T09:47:44+08:00">2022-12-13</time>
+              <time title="创建时间：2022-12-13 09:47:44 / 修改时间：20:54:44" itemprop="dateCreated datePublished" datetime="2022-12-13T09:47:44+08:00">2022-12-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,18 +338,74 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="C-多线程"><a href="#C-多线程" class="headerlink" title="C++多线程"></a>C++多线程</h1><!--toc-->
-<h2 id="一、-概念"><a href="#一、-概念" class="headerlink" title="一、 概念"></a>一、 概念</h2><h6 id="1-进程"><a href="#1-进程" class="headerlink" title="1. 进程"></a>1. 进程</h6><p>可简单理解为exe的一次运行</p>
+          <span id="more"></span>
+<h1 id="C-多线程"><a href="#C-多线程" class="headerlink" title="C++多线程"></a>C++多线程</h1><h2 id="一、-概念"><a href="#一、-概念" class="headerlink" title="一、 概念"></a>一、 概念</h2><h6 id="1-进程"><a href="#1-进程" class="headerlink" title="1. 进程"></a>1. 进程</h6><p>可简单理解为exe的一次运行</p>
 <h6 id="2-线程"><a href="#2-线程" class="headerlink" title="2. 线程"></a>2. 线程</h6><p>一个进程可以有多个线程（但有且只有一个主线程）</p>
-<h2 id="二、-并发实现"><a href="#二、-并发实现" class="headerlink" title="二、 并发实现"></a>二、 并发实现</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/13/C-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<h2 id="二、-并发实现"><a href="#二、-并发实现" class="headerlink" title="二、 并发实现"></a>二、 并发实现</h2><h6 id="1-多进程"><a href="#1-多进程" class="headerlink" title="1. 多进程"></a>1. 多进程</h6><p>解决进程间通讯</p>
+<h6 id="2-多线程"><a href="#2-多线程" class="headerlink" title="2. 多线程"></a>2. 多线程</h6><p>一个主线程多个子线程实现并发，进程资源在线程间共享</p>
+<h2 id="三、-C-线程创建"><a href="#三、-C-线程创建" class="headerlink" title="三、 C++线程创建"></a>三、 C++线程创建</h2><h3 id="3-1-基本函数创建"><a href="#3-1-基本函数创建" class="headerlink" title="3.1 基本函数创建"></a>3.1 基本函数创建</h3><h4 id="1-包含头文件"><a href="#1-包含头文件" class="headerlink" title="1. 包含头文件"></a>1. 包含头文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="2-创建线程"><a href="#2-创建线程" class="headerlink" title="2. 创建线程"></a>2. 创建线程</h4><p>创建thread对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">thread <span class="title">th1</span><span class="params">(func)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要后续处理：否则主函数结束会抛异常<h4 id="3-后续处理"><a href="#3-后续处理" class="headerlink" title="3. 后续处理"></a>3. 后续处理</h4></li>
+</ul>
+<ol>
+<li>阻塞主线程<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th1.join();</span><br></pre></td></tr></table></figure>
+主线程等待子线程执行完毕</li>
+<li>分离子线程<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th1.detach();</span><br></pre></td></tr></table></figure>
+将子线程与主线程分离，子线程与主线程不再关联</li>
+</ol>
+<ul>
+<li>每个线程只能做一次后续处理，不管是<code>join</code>还是<code>detach</code>.</li>
+</ul>
+<ol start="3">
+<li>判断一个进程是否可以做后续处理<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th1.joinable();</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-类和对象创建"><a href="#3-2-类和对象创建" class="headerlink" title="3.2 类和对象创建"></a>3.2 类和对象创建</h3>重载括号运算符制作函数类，将函数类的对象作为线程参数<h3 id="3-3-Lambda表达式创建"><a href="#3-3-Lambda表达式创建" class="headerlink" title="3.3 Lambda表达式创建"></a>3.3 Lambda表达式创建</h3>将lambda表达式作为参数<h3 id="3-4-带参创建"><a href="#3-4-带参创建" class="headerlink" title="3.4 带参创建"></a>3.4 带参创建</h3>传引用参数需要<code>ref()</code>包装<h3 id="3-5-带智能指针"><a href="#3-5-带智能指针" class="headerlink" title="3.5 带智能指针"></a>3.5 带智能指针</h3>用<code>move()</code>但是之后原智能指针销毁<h3 id="3-6-类成员函数创建"><a href="#3-6-类成员函数创建" class="headerlink" title="3.6 类成员函数创建"></a>3.6 类成员函数创建</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">thread <span class="title">th1</span><span class="params">(成员函数指针，成员函数所属的对象，参数（可能需要包装）)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="四、异步"><a href="#四、异步" class="headerlink" title="四、异步"></a>四、异步</h2><h4 id="4-1-包含头文件"><a href="#4-1-包含头文件" class="headerlink" title="4.1 包含头文件"></a>4.1 包含头文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="4-2-创建未来返回值对象"><a href="#4-2-创建未来返回值对象" class="headerlink" title="4.2 创建未来返回值对象"></a>4.2 创建未来返回值对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">future</span>&lt;type&gt; fu1;</span><br></pre></td></tr></table></figure>
+<h4 id="4-3-异步运行"><a href="#4-3-异步运行" class="headerlink" title="4.3 异步运行"></a>4.3 异步运行</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1=async(func/lambda)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>此时程序分出一个线程执行异步程序，并继续向后执行<h4 id="4-4-取回异步运行结果"><a href="#4-4-取回异步运行结果" class="headerlink" title="4.4 取回异步运行结果"></a>4.4 取回异步运行结果</h4></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.get()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时异步程序若仍未执行完，将阻塞程序至异步程序执行完并取回值<h4 id="4-5-等待异步程序执行完毕但不需要返回结果"><a href="#4-5-等待异步程序执行完毕但不需要返回结果" class="headerlink" title="4.5 等待异步程序执行完毕但不需要返回结果"></a>4.5 等待异步程序执行完毕但不需要返回结果</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.wait()</span><br></pre></td></tr></table></figure>
+<h4 id="4-6-仅等待一段时间（超时检测）"><a href="#4-6-仅等待一段时间（超时检测）" class="headerlink" title="4.6 仅等待一段时间（超时检测）"></a>4.6 仅等待一段时间（超时检测）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fu1.wait_for(chrono时间单位（）)</span><br></pre></td></tr></table></figure></li>
+<li>如超时未执行完毕则返回<code>future_status::timeout</code>,按时执行完毕则返回<code>future_status::ready</code><h4 id="4-7-不异步仅延迟至get时运行"><a href="#4-7-不异步仅延迟至get时运行" class="headerlink" title="4.7 不异步仅延迟至get时运行"></a>4.7 不异步仅延迟至get时运行</h4>将<code>async</code>第一个参数设为<code>std::launch::deferred</code><h4 id="4-8-手动管理线程"><a href="#4-8-手动管理线程" class="headerlink" title="4.8 手动管理线程"></a>4.8 手动管理线程</h4>不使用async而是使用promise<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::promise&lt;type&gt; pr1=promise(func/lambda)</span><br></pre></td></tr></table></figure>
+在传入的可执行体中设置未来值<code>pr1.set_value()</code>，然后在外面<code>get_future</code>获取未来返回值对象，并进一步get获取未来值<h2 id="五、锁"><a href="#五、锁" class="headerlink" title="五、锁"></a>五、锁</h2><h6 id="1-导入头文件"><a href="#1-导入头文件" class="headerlink" title="1. 导入头文件"></a>1. 导入头文件</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h6 id="2-创建锁对象"><a href="#2-创建锁对象" class="headerlink" title="2. 创建锁对象"></a>2. 创建锁对象</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mutex mtx1</span><br><span class="line">timed_mutex tmtx1 <span class="comment">//可以等待一会的锁</span></span><br></pre></td></tr></table></figure>
+<h6 id="3-基本操作"><a href="#3-基本操作" class="headerlink" title="3. 基本操作"></a>3. 基本操作</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mtx1.lock()  <span class="comment">//加锁</span></span><br><span class="line">mtx1.lock()  <span class="comment">//解锁</span></span><br></pre></td></tr></table></figure></li>
+<li>一个锁锁住就不能再锁，后面试图加锁的就会被阻塞至前一线程解锁<h6 id="4-自动解锁"><a href="#4-自动解锁" class="headerlink" title="4. 自动解锁"></a>4. 自动解锁</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">lock_guard <span class="title">gl1</span><span class="params">(mtx1)</span></span></span><br></pre></td></tr></table></figure></li>
+<li>创建即加锁，离开作用域自动解锁</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">ul1</span><span class="params">(mtx1)</span> <span class="comment">//创建即加锁</span></span></span><br><span class="line"><span class="function">unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">ul1</span><span class="params">(mtx1,defer_lock)</span>  <span class="comment">//创建时不加锁</span></span></span><br><span class="line"><span class="function">unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">ul1</span><span class="params">(mtx1,try_to_lock)</span>  <span class="comment">//创建时尝试加锁但不阻塞</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">try_lock</span><span class="params">()</span> <span class="comment">//尝试加锁</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">try_lock_for</span><span class="params">()</span> <span class="comment">//尝试再一段时间内加锁（timed_mutex）</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">try_lock_until</span><span class="params">()</span> <span class="comment">//尝试在某个时间点之前加锁(timed_mutex)</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">owns_lock</span><span class="params">()</span> <span class="comment">//锁是不是自己的（try_to_lock结果）</span></span></span><br><span class="line"><span class="function">ul1.<span class="title">lock</span><span class="params">()</span> <span class="comment">//手动加锁</span></span></span><br><span class="line">ul1.unlock（） //手动解锁</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>锁所有权转移要用<code>move()</code></p>
+<h6 id="5-读写分离锁"><a href="#5-读写分离锁" class="headerlink" title="5. 读写分离锁"></a>5. 读写分离锁</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shared_mutex sml1 <span class="comment">//创建锁</span></span><br><span class="line">sml1.lock() <span class="comment">//锁写</span></span><br><span class="line">sml1.unlock() <span class="comment">//解锁写</span></span><br><span class="line">sml1.lock_shared() <span class="comment">//读锁</span></span><br><span class="line">sml1.unlock_shared() <span class="comment">//解锁读</span></span><br><span class="line"><span class="function">shared_lock <span class="title">sl1</span><span class="params">(shared_mutexd对象)</span> <span class="comment">//自动解锁（类似unique_lock）</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>读锁可以锁多次，多个线程一起读，但读的时候不能写（计数）</p>
+</li>
+<li><p>多个对象建议每个对象一个锁</p>
+</li>
+</ul>
+<h6 id="6-死锁"><a href="#6-死锁" class="headerlink" title="6. 死锁"></a>6. 死锁</h6><ol>
+<li>一个线程不要同时持有多个锁</li>
+<li>线程的上锁顺序一致</li>
+<li>使用<code>lock(mtx1,mtx2,...)</code>对多个锁上锁可以自动处理上锁顺序确保不产生死锁</li>
+<li>使用<code>scoped_lock sl1(mtx1,mtx2,...)</code>对多个锁上锁可以确保不产生死锁并自动解锁</li>
+<li>单个线程死锁可以用<code>recursice_mutex</code>代替<code>mutex</code>,每次加锁会加一个计数，计数0解锁，但是会有性能损失</li>
+</ol>
+<h2 id="六、条件变量"><a href="#六、条件变量" class="headerlink" title="六、条件变量"></a>六、条件变量</h2><h4 id="1-导入头文件-1"><a href="#1-导入头文件-1" class="headerlink" title="1. 导入头文件"></a>1. 导入头文件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="2-创建条件变量对象"><a href="#2-创建条件变量对象" class="headerlink" title="2. 创建条件变量对象"></a>2. 创建条件变量对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condition_variable cv1</span><br></pre></td></tr></table></figure>
+<h4 id="2-等待条件"><a href="#2-等待条件" class="headerlink" title="2. 等待条件"></a>2. 等待条件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv1.wait(锁，可以提供执行体如返回<span class="literal">true</span>才唤醒) <span class="comment">//多个wait被唤醒时锁确保只有一个线程被运行，等待状态中锁会被暂时解锁</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="4-发送唤醒信号（另一线程）"><a href="#4-发送唤醒信号（另一线程）" class="headerlink" title="4. 发送唤醒信号（另一线程）"></a>4. 发送唤醒信号（另一线程）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv1.notify_one() <span class="comment">//唤醒一个wait的线程</span></span><br><span class="line">cv1.notify_all() <span class="comment">//唤醒所有wait的线程</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>condition_variable</code>只支持<code>unique_lock</code>，其他锁可以用<code>condition_variable_any</code></li>
+<li>也有<code>wait_for()</code>和<code>wait_until()</code>,会返回布尔值作为等待结果<h2 id="七、原子操作"><a href="#七、原子操作" class="headerlink" title="七、原子操作"></a>七、原子操作</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atomic&lt;type&gt; name</span><br></pre></td></tr></table></figure>
+放弃分解和乱序优化，确保对该变量的操作是一次性的（不会有其他线程在插入分解后的执行序列）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+=</span><br><span class="line">-=</span><br><span class="line">*=</span><br><span class="line">&amp;=</span><br><span class="line">|=</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
 
@@ -344,7 +449,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-13 07:36:48 / 修改时间：20:47:55" itemprop="dateCreated datePublished" datetime="2022-12-13T07:36:48+08:00">2022-12-13</time>
+              <time title="创建时间：2022-12-13 07:36:48 / 修改时间：20:54:58" itemprop="dateCreated datePublished" datetime="2022-12-13T07:36:48+08:00">2022-12-13</time>
             </span>
 
           
@@ -358,15 +463,173 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h1><p><strong>漏洞扫描器</strong><br>漏洞扫描器是一种能够自动在计算机、信息系统、网络及应用软件中寻找和发现安全弱点的程序。它通过网络对目标系统进行探测，向目标系统发生数据，并将反馈数据与自带的漏洞特征库进行匹配，进而列举目标系统上存在的安全漏洞.  </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/13/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <span id="more"></span>
+<h1 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h1><p><strong>1. 概念</strong><br>漏洞扫描器是一种能够自动在计算机、信息系统、网络及应用软件中寻找和发现安全弱点的程序。它通过网络对目标系统进行探测，向目标系统发生数据，并将反馈数据与自带的漏洞特征库进行匹配，进而列举目标系统上存在的安全漏洞.  </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BBQSQL</td>
+<td>BED</td>
+<td>cisco-auditing-tool</td>
+</tr>
+<tr>
+<td>cisco-global-exploiter</td>
+<td>cisco-ocs</td>
+<td>cisco-torch</td>
+</tr>
+<tr>
+<td>copy-router-config</td>
+<td>Doona</td>
+<td>DotDotPwn</td>
+</tr>
+<tr>
+<td>HexorBase</td>
+<td>jSQL Injection</td>
+<td>Lynis</td>
+</tr>
+<tr>
+<td>Nmap</td>
+<td>ohrwurm</td>
+<td>openvas</td>
+</tr>
+<tr>
+<td>Oscanner</td>
+<td>Powerfuzzer</td>
+<td>sfuzz</td>
+</tr>
+<tr>
+<td>SidGuesser</td>
+<td>SIPArmyKnife</td>
+<td>sqlmap</td>
+</tr>
+<tr>
+<td>Sqlninja</td>
+<td>sqlsus</td>
+<td>THC-IPV6</td>
+</tr>
+<tr>
+<td>tnscmd10g</td>
+<td>unix-privesc-check</td>
+<td>Yersinia</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>Nessus  </li>
+<li>OpenVAS</li>
+</ol>
+<p><strong>Nessus</strong><br><img src="https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/img/00208.jpeg" alt="scan"></p>
+<p><img src="https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/img/00209.jpeg" alt="scan"></p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>扫描内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CISCO</td>
+<td>扫描CISCO系统</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>扫描DNS服务器</td>
+</tr>
+<tr>
+<td>Default Unix Accounts</td>
+<td>扫描本地默认用户账户和密码</td>
+</tr>
+<tr>
+<td>FTP</td>
+<td>扫描FTP服务器</td>
+</tr>
+<tr>
+<td>Firewalls</td>
+<td>扫描代理防火墙</td>
+</tr>
+<tr>
+<td>Gain a shell remotely</td>
+<td>扫描远程获取的Shell</td>
+</tr>
+<tr>
+<td>Geeral</td>
+<td>扫描常用的服务</td>
+</tr>
+<tr>
+<td>Netware</td>
+<td>扫描网络操作系统</td>
+</tr>
+<tr>
+<td>Peer-To-Peer File Sharing</td>
+<td>扫描共享文件检测</td>
+</tr>
+<tr>
+<td>Policy Compliance</td>
+<td>扫描PCI DSS和SCAP信息</td>
+</tr>
+<tr>
+<td>SCADA</td>
+<td>扫描设置管理工具</td>
+</tr>
+<tr>
+<td>SMTP Problems</td>
+<td>扫描SMTP问题</td>
+</tr>
+<tr>
+<td>SNMP</td>
+<td>扫描SNMP相关信息</td>
+</tr>
+<tr>
+<td>Service Detection</td>
+<td>扫描服务侦察</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>扫描基本设置</td>
+</tr>
+</tbody></table>
+<p><strong>OpenVAS</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">openvas-nvt-sync</span><br><span class="line">openvassd</span><br><span class="line">openvasmd --rebuild</span><br><span class="line">openvasmd --backup</span><br><span class="line">openvasmd -p <span class="number">9390</span> -a <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">openvasad -a <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -p <span class="number">9393</span></span><br><span class="line">gsad --http-only --listen=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -p <span class="number">9392</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>扫描内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Compliance</td>
+<td>扫描Compliance漏洞</td>
+</tr>
+<tr>
+<td>Default Accounts</td>
+<td>扫描默认账号漏洞</td>
+</tr>
+<tr>
+<td>Denial of Service</td>
+<td>扫描拒绝服务漏洞</td>
+</tr>
+<tr>
+<td>FTP</td>
+<td>扫描FTP服务器漏洞</td>
+</tr>
+<tr>
+<td>Ubuntu Local Security Checks</td>
+<td>扫描Ubuntu系统的本地安全漏洞</td>
+</tr>
+</tbody></table>
+<p>finish</p>
+
       
     </div>
 
@@ -897,7 +1160,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-13 20:47:33" itemprop="dateModified" datetime="2022-12-13T20:47:33+08:00">2022-12-13</time>
+                <time title="修改时间：2022-12-13 20:55:31" itemprop="dateModified" datetime="2022-12-13T20:55:31+08:00">2022-12-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -920,17 +1183,129 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="PC下安卓逆向拆包编译打包与重新签名"><a href="#PC下安卓逆向拆包编译打包与重新签名" class="headerlink" title="PC下安卓逆向拆包编译打包与重新签名"></a>PC下安卓逆向拆包编译打包与重新签名</h1><blockquote>
+          <span id="more"></span>
+<h1 id="PC下安卓逆向拆包编译打包与重新签名"><a href="#PC下安卓逆向拆包编译打包与重新签名" class="headerlink" title="PC下安卓逆向拆包编译打包与重新签名"></a>PC下安卓逆向拆包编译打包与重新签名</h1><blockquote>
 <p>1.安装jdk开发环境并设置环境变量</p>
 </blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/15/PC%E4%B8%8B%E5%AE%89%E5%8D%93%E6%8B%86%E5%8C%85%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E4%B8%8E%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<ol>
+<li>到<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">ORCLE</a>官网下载JDK开发环境<img src="https://i.loli.net/2020/06/05/PsHLpcQXwq4xfdG.png" alt="orcle官网.png"></li>
+<li>运行安装（基本一直下一步，没啥好说的，记住自己安装目录选在哪了就行）</li>
+<li>配置环境变量<img src="https://i.loli.net/2020/06/05/Xbd1NQcLgnDHaYC.png" alt="搜索高级系统设置"><img src="https://i.loli.net/2020/06/05/SpFHogT7zrP3YqZ.png" alt="系统属性.png"><img src="https://i.loli.net/2020/06/05/Ykr1OKWz8IQVpdx.png" alt="path.png"><img src="https://i.loli.net/2020/06/05/THceMiSoGOtKhIA.png" alt="添加变量.png"></li>
+</ol>
+<p><strong>然后找到你的JDK安装目录下的bin文件夹</strong></p>
+<p><img src="https://i.loli.net/2020/06/05/QHpoV746ud89rYf.png" alt="目录.png"></p>
+<p>最后一路确定回来。</p>
+<blockquote>
+<p>2.apk拆包打包工具——APLTOOL</p>
+</blockquote>
+<ol>
+<li>到<a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/">APLTOOL官网</a>往下翻下载最新版APLTOOL<img src="https://i.loli.net/2020/06/05/gtEmL2uIVKOYU67.png" alt="apktool官网.png"></li>
+<li>找一个你喜欢的地方新建一个文件夹作为安卓拆包打包的地方，然后把下载的.jar文件放进去（可以把名字改短点以防打指令时候不好打）</li>
+<li>把你要拆包的.apk或者要打包成apk的文件夹也放进来</li>
+<li>按住shift+右键，选择在此处打开powershell<strong>（按住shift再右键才有）</strong><img src="https://i.loli.net/2020/06/05/WERqzMGudB8mAxY.png" alt="shiftlright.png"></li>
+<li>执行拆包/打包命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar d filename.apk&#x2F;&#x2F;拆包</span><br><span class="line">java -jar jarfilename.jar b flodername&#x2F;&#x2F;打包</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息"><a href="#注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息" class="headerlink" title="注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息"></a><font color=red>注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></h2><blockquote>
+<p>3.使用dex2jar将dex文件转换为jar格式</p>
+</blockquote>
+<p>在将apk逆向拆包后，apktool会将里面的dex文件逆向为可编辑的smail文件，但是smail的语法比较奇怪，并不是很适合大多数人的阅读习惯，因此我们可以</p>
+<p>首先把apk文件拷贝一份解压缩，获取里面的dex文件，然后输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat filename.dex</span><br></pre></td></tr></table></figure>
+
+<p>将dex文件转换为jar，再经过逆向，便可通过阅读java源代码的方式来寻找需要逆向后修改的内容，找到后到smail文件内修改对应内容即可。</p>
+<blockquote>
+<p>4.使用JD-GUI或CFR将jar文件逆向为java源码</p>
+</blockquote>
+<p>JD-GUI和CFR都是知名的java逆向工具，通过使用JD-GUI和CFR我们可以将已经编译为字节码或jar包的java文件逆向回java源码，JD-GUI是一个图形界面的工具，而CFR则是命令行工具。</p>
+<p>JD-GUI的使用比较简单，只要在终端内输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar </span><br></pre></td></tr></table></figure>
+
+<p>即可打开一个带图形界面的软件，在里面选中逆向出的jar打开即可查看逆向出的文件</p>
+<p>CFR没有图形界面，但实际使用中往往比JD-GUI更稳定，一些JD-GUI无法正确逆向的文件能够在CFR下逆向成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar inputjarfilename.jar  --outputdir &#x2F;savepath</span><br></pre></td></tr></table></figure>
+
+<p>之后可以通过其它ide或文本编辑器查看逆向出的文件</p>
+<blockquote>
+<p>5.生成我们自己的.keystore文件</p>
+</blockquote>
+<p>平常我们用的一些重新签名工具里面大都是别人做好的签名文件，这里我们可以生成我们自己独有的签名文件。</p>
+<ul>
+<li>在powershell输入</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias 别名 -keyalg RSA -validity 有效天数 -keystore filename.keystore</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-genkey</td>
+<td>产生证书文件</td>
+</tr>
+<tr>
+<td>-alias</td>
+<td>产生别名</td>
+</tr>
+<tr>
+<td>-keystore</td>
+<td>密钥库名称</td>
+</tr>
+<tr>
+<td>-keyalg</td>
+<td>密钥的算法</td>
+</tr>
+<tr>
+<td>-validity</td>
+<td>证书有效天数</td>
+</tr>
+</tbody></table>
+<p>然后按提示分别输入<br>姓名、组织单位、、城市、省份、国家代码<br>Y确认正确<br>然后设置一个密码（输入的时候不会有反应但是实际上输进去了）<br>回车后会再让你确认一次密码</p>
+<p>之后你就得到了自定义的.keystore密匙文件</p>
+<blockquote>
+<p>6.为打包好的.apk签名</p>
+</blockquote>
+<p>在powershell输入指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore filename.keystore -signedjar outputfile.apk inputfile.apk alise</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-verbose</td>
+<td>输出签名过程的详细信息</td>
+</tr>
+<tr>
+<td>alias</td>
+<td>密匙证书文件的别名</td>
+</tr>
+<tr>
+<td>-keystore</td>
+<td>密匙证书文件位置</td>
+</tr>
+<tr>
+<td>-signedjar</td>
+<td>指定输入输出文件名</td>
+</tr>
+<tr>
+<td>inputfile.apk</td>
+<td>未签名文件</td>
+</tr>
+<tr>
+<td>outputfile.apk</td>
+<td>签名后文件</td>
+</tr>
+</tbody></table>
+<p>如此我们便成功的完成了对apk文件的签名</p>
+
       
     </div>
 

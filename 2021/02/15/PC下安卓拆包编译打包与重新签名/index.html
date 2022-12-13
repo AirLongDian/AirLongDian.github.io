@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -223,7 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1><span id="pc下安卓逆向拆包编译打包与重新签名">PC下安卓逆向拆包编译打包与重新签名</span></h1><blockquote>
+        <h1 id="PC下安卓逆向拆包编译打包与重新签名"><a href="#PC下安卓逆向拆包编译打包与重新签名" class="headerlink" title="PC下安卓逆向拆包编译打包与重新签名"></a>PC下安卓逆向拆包编译打包与重新签名</h1><blockquote>
 <p>1.安装jdk开发环境并设置环境变量</p>
 </blockquote>
 <ol>
@@ -245,12 +245,14 @@
 <li>执行拆包/打包命令</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar d filename.apk&#x2F;&#x2F;拆包</span><br><span class="line">java -jar jarfilename.jar b flodername&#x2F;&#x2F;打包</span><br></pre></td></tr></table></figure>
-<h2><span id="注意打包前最好删除-meta-inf-文件夹这里面是旧的安装包签名信息"><font color="red">注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></span></h2><blockquote>
+
+<h2 id="注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息"><a href="#注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息" class="headerlink" title="注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息"></a><font color=red>注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></h2><blockquote>
 <p>3.使用dex2jar将dex文件转换为jar格式</p>
 </blockquote>
 <p>在将apk逆向拆包后，apktool会将里面的dex文件逆向为可编辑的smail文件，但是smail的语法比较奇怪，并不是很适合大多数人的阅读习惯，因此我们可以</p>
 <p>首先把apk文件拷贝一份解压缩，获取里面的dex文件，然后输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat filename.dex</span><br></pre></td></tr></table></figure>
+
 <p>将dex文件转换为jar，再经过逆向，便可通过阅读java源代码的方式来寻找需要逆向后修改的内容，找到后到smail文件内修改对应内容即可。</p>
 <blockquote>
 <p>4.使用JD-GUI或CFR将jar文件逆向为java源码</p>
@@ -258,9 +260,11 @@
 <p>JD-GUI和CFR都是知名的java逆向工具，通过使用JD-GUI和CFR我们可以将已经编译为字节码或jar包的java文件逆向回java源码，JD-GUI是一个图形界面的工具，而CFR则是命令行工具。</p>
 <p>JD-GUI的使用比较简单，只要在终端内输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar </span><br></pre></td></tr></table></figure>
+
 <p>即可打开一个带图形界面的软件，在里面选中逆向出的jar打开即可查看逆向出的文件</p>
 <p>CFR没有图形界面，但实际使用中往往比JD-GUI更稳定，一些JD-GUI无法正确逆向的文件能够在CFR下逆向成功</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar inputjarfilename.jar  --outputdir &#x2F;savepath</span><br></pre></td></tr></table></figure>
+
 <p>之后可以通过其它ide或文本编辑器查看逆向出的文件</p>
 <blockquote>
 <p>5.生成我们自己的.keystore文件</p>
@@ -270,6 +274,7 @@
 <li>在powershell输入</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias 别名 -keyalg RSA -validity 有效天数 -keystore filename.keystore</span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -305,6 +310,7 @@
 </blockquote>
 <p>在powershell输入指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore filename.keystore -signedjar outputfile.apk inputfile.apk alise</span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -422,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">PC下安卓逆向拆包编译打包与重新签名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PC%E4%B8%8B%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8B%86%E5%8C%85%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E4%B8%8E%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8D"><span class="nav-number">1.</span> <span class="nav-text">PC下安卓逆向拆包编译打包与重新签名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%81%E6%89%93%E5%8C%85%E5%89%8D%E6%9C%80%E5%A5%BD%E5%88%A0%E9%99%A4-META-INF-%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%81%E8%BF%99%E9%87%8C%E9%9D%A2%E6%98%AF%E6%97%A7%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.</span> <span class="nav-text">注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -436,7 +442,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -449,7 +455,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

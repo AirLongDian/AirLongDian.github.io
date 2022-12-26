@@ -162,6 +162,209 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(4)%E5%9F%BA%E6%9C%AC%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AirLongDian">
+      <meta itemprop="description" content="联系作者：QQ：269672173">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AirLongDian's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(4)%E5%9F%BA%E6%9C%AC%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">C++网络编程（4）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-26 16:02:44 / 修改时间：16:01:55" itemprop="dateCreated datePublished" datetime="2022-12-26T16:02:44+08:00">2022-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">C++笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基本客户端实现"><a href="#基本客户端实现" class="headerlink" title="基本客户端实现"></a>基本客户端实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// make socket</span></span><br><span class="line">	<span class="keyword">int</span> soct1=socket(AF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(soct1 == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cerr</span>&lt;&lt;<span class="string">&quot;create socket failed!&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// init ip address</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">host</span>;</span></span><br><span class="line">	host.sin_family = AF_INET;</span><br><span class="line">	host.sin_port = htons(<span class="number">12345</span>);</span><br><span class="line">	host.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">	<span class="comment">//connect</span></span><br><span class="line">	<span class="keyword">int</span> flag=connect(soct1,(sockaddr*)&amp;host,<span class="keyword">sizeof</span>(sockaddr));</span><br><span class="line">	<span class="keyword">if</span> (flag==<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cerr</span>&lt;&lt;<span class="string">&quot;connect failed&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">char</span> buffer[<span class="number">1024</span>];</span><br><span class="line">	<span class="comment">//communicate</span></span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">	&#123;	</span><br><span class="line">		<span class="built_in">sprintf</span>(buffer,<span class="string">&quot;hello server!&quot;</span>);</span><br><span class="line">		send(soct1,buffer,<span class="built_in">strlen</span>(buffer)+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">		<span class="comment">//reset buffer</span></span><br><span class="line">		<span class="built_in">memset</span>(buffer,<span class="number">0</span>,<span class="keyword">sizeof</span>(buffer));</span><br><span class="line">		<span class="keyword">int</span> rec1=recv(soct1,buffer,<span class="keyword">sizeof</span>(buffer),<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span> (rec1&gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cerr</span>&lt;&lt;buffer&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (rec1=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cerr</span>&lt;&lt;<span class="string">&quot;server disconnect&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cerr</span>&lt;&lt;<span class="string">&quot;send failed&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		sleep(<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	close(soct1);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(3)%E5%9F%BA%E6%9C%AC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AirLongDian">
+      <meta itemprop="description" content="联系作者：QQ：269672173">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AirLongDian's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(3)%E5%9F%BA%E6%9C%AC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">C++网络编程（3）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-26 16:00:44 / 修改时间：16:00:38" itemprop="dateCreated datePublished" datetime="2022-12-26T16:00:44+08:00">2022-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">C++笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基本服务端实现"><a href="#基本服务端实现" class="headerlink" title="基本服务端实现"></a>基本服务端实现</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span>::<span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// make socket</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> soct1 = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);</span><br><span class="line">	<span class="keyword">if</span> (soct1 == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cerr</span>&lt;&lt;<span class="string">&quot;create socket  fail!&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// init ip address struct</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">saddrin1</span>;</span></span><br><span class="line">	saddrin1.sin_family = AF_INET;</span><br><span class="line">	saddrin1.sin_port = htons(<span class="number">12345</span>);</span><br><span class="line">	saddrin1.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">	<span class="comment">// bind socket to host</span></span><br><span class="line">	<span class="keyword">int</span> ret = bind(soct1,(sockaddr*)&amp;saddrin1,<span class="keyword">sizeof</span>(saddrin1));</span><br><span class="line">	<span class="keyword">if</span>(ret == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;bind failled!&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// set listen</span></span><br><span class="line">	ret =listen(soct1,<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">if</span>(ret == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;listen failled!&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// init ip address</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">saddrin2</span>;</span></span><br><span class="line">	<span class="keyword">socklen_t</span> addrlen =<span class="keyword">sizeof</span>(saddrin2);</span><br><span class="line">	<span class="comment">// access connect</span></span><br><span class="line">	<span class="keyword">int</span> acc1 = accept(soct1,(sockaddr*)&amp;saddrin2,&amp;addrlen);</span><br><span class="line">	<span class="keyword">if</span>(ret == <span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;connect failled!&quot;</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// show c_ip addr</span></span><br><span class="line">	<span class="keyword">char</span> ip[<span class="number">32</span>];</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;inet_ntop(AF_INET,&amp;saddrin2.sin_addr.s_addr,ip,<span class="keyword">sizeof</span>(ip))&lt;&lt;<span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line">	<span class="comment">// make read buffer</span></span><br><span class="line">	<span class="keyword">char</span> buff[<span class="number">1024</span>];</span><br><span class="line">	<span class="comment">// read</span></span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> len = recv(acc1,buff,<span class="keyword">sizeof</span>(buff),<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span>(len&gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cerr</span>&lt;&lt;buff&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">memset</span>(buff,<span class="number">0</span>,<span class="keyword">sizeof</span>(buff));</span><br><span class="line">			<span class="built_in">sprintf</span>(buff,<span class="string">&quot;hello customer!&quot;</span>);</span><br><span class="line">			send(acc1,buff,<span class="built_in">strlen</span>(buff)+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(len = <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cerr</span>&lt;&lt;<span class="string">&quot;ERR&quot;</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// clean connect</span></span><br><span class="line">	close(soct1);</span><br><span class="line">	close(acc1);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AirLongDian">
+      <meta itemprop="description" content="联系作者：QQ：269672173">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AirLongDian's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(2)/" class="post-title-link" itemprop="url">C++网络编程（2）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-26 15:58:44 / 修改时间：15:59:51" itemprop="dateCreated datePublished" datetime="2022-12-26T15:58:44+08:00">2022-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">C++笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="通信流程"><a href="#通信流程" class="headerlink" title="通信流程"></a>通信流程</h2><h3 id="1-服务器端"><a href="#1-服务器端" class="headerlink" title="1. 服务器端"></a>1. 服务器端</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> soc=socket(); <span class="comment">//创建用于监听连接的套接字（文件描述符）检测是否有客户端连接</span></span><br><span class="line">bind() <span class="comment">//将得到的文件描述符和本地IP端口绑定</span></span><br><span class="line">listen(); <span class="comment">//启动监听</span></span><br><span class="line"><span class="keyword">int</span> acp=accept(); <span class="comment">//接受请求，返回 用于接受连接后用于通信的文件描述符</span></span><br><span class="line">read();write();recv()；send() <span class="comment">//读写数据</span></span><br><span class="line">close() <span class="comment">//断开连接</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-服务器端"><a href="#2-服务器端" class="headerlink" title="2. 服务器端"></a>2. 服务器端</h3><p>```C++<br>int soc=socket(); //创建用于通信的文件描述读<br>connect(); //连接服务器<br>read(); //读写<br>write(); //读写<br>recv(); //读写<br>send();//读写<br>close(); //断开连接</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/C-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1014,585 +1217,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/15/PC%E4%B8%8B%E5%AE%89%E5%8D%93%E6%8B%86%E5%8C%85%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E4%B8%8E%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AirLongDian">
-      <meta itemprop="description" content="联系作者：QQ：269672173">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AirLongDian's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/PC%E4%B8%8B%E5%AE%89%E5%8D%93%E6%8B%86%E5%8C%85%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E4%B8%8E%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8D/" class="post-title-link" itemprop="url">PC下安卓逆向拆包编译打包与重新签名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-15 22:57:43" itemprop="dateCreated datePublished" datetime="2021-02-15T22:57:43+08:00">2021-02-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-13 20:58:59" itemprop="dateModified" datetime="2022-12-13T20:58:59+08:00">2022-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">信息安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="PC下安卓逆向拆包编译打包与重新签名"><a href="#PC下安卓逆向拆包编译打包与重新签名" class="headerlink" title="PC下安卓逆向拆包编译打包与重新签名"></a>PC下安卓逆向拆包编译打包与重新签名</h1><blockquote>
-<p>1.安装jdk开发环境并设置环境变量</p>
-</blockquote>
-<ol>
-<li>到<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">ORCLE</a>官网下载JDK开发环境<img src="https://i.loli.net/2020/06/05/PsHLpcQXwq4xfdG.png" alt="orcle官网.png"></li>
-<li>运行安装（基本一直下一步，没啥好说的，记住自己安装目录选在哪了就行）</li>
-<li>配置环境变量<img src="https://i.loli.net/2020/06/05/Xbd1NQcLgnDHaYC.png" alt="搜索高级系统设置"><img src="https://i.loli.net/2020/06/05/SpFHogT7zrP3YqZ.png" alt="系统属性.png"><img src="https://i.loli.net/2020/06/05/Ykr1OKWz8IQVpdx.png" alt="path.png"><img src="https://i.loli.net/2020/06/05/THceMiSoGOtKhIA.png" alt="添加变量.png"></li>
-</ol>
-<p><strong>然后找到你的JDK安装目录下的bin文件夹</strong></p>
-<p><img src="https://i.loli.net/2020/06/05/QHpoV746ud89rYf.png" alt="目录.png"></p>
-<p>最后一路确定回来。</p>
-<blockquote>
-<p>2.apk拆包打包工具——APLTOOL</p>
-</blockquote>
-<ol>
-<li>到<a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/">APLTOOL官网</a>往下翻下载最新版APLTOOL<img src="https://i.loli.net/2020/06/05/gtEmL2uIVKOYU67.png" alt="apktool官网.png"></li>
-<li>找一个你喜欢的地方新建一个文件夹作为安卓拆包打包的地方，然后把下载的.jar文件放进去（可以把名字改短点以防打指令时候不好打）</li>
-<li>把你要拆包的.apk或者要打包成apk的文件夹也放进来</li>
-<li>按住shift+右键，选择在此处打开powershell<strong>（按住shift再右键才有）</strong><img src="https://i.loli.net/2020/06/05/WERqzMGudB8mAxY.png" alt="shiftlright.png"></li>
-<li>执行拆包/打包命令</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar d filename.apk&#x2F;&#x2F;拆包</span><br><span class="line">java -jar jarfilename.jar b flodername&#x2F;&#x2F;打包</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息"><a href="#注意！打包前最好删除-META-INF-文件夹！这里面是旧的安装包签名信息" class="headerlink" title="注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息"></a><font color=red>注意！打包前最好删除 META-INF 文件夹！这里面是旧的安装包签名信息</font></h2><blockquote>
-<p>3.使用dex2jar将dex文件转换为jar格式</p>
-</blockquote>
-<p>在将apk逆向拆包后，apktool会将里面的dex文件逆向为可编辑的smail文件，但是smail的语法比较奇怪，并不是很适合大多数人的阅读习惯，因此我们可以</p>
-<p>首先把apk文件拷贝一份解压缩，获取里面的dex文件，然后输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat filename.dex</span><br></pre></td></tr></table></figure>
-
-<p>将dex文件转换为jar，再经过逆向，便可通过阅读java源代码的方式来寻找需要逆向后修改的内容，找到后到smail文件内修改对应内容即可。</p>
-<blockquote>
-<p>4.使用JD-GUI或CFR将jar文件逆向为java源码</p>
-</blockquote>
-<p>JD-GUI和CFR都是知名的java逆向工具，通过使用JD-GUI和CFR我们可以将已经编译为字节码或jar包的java文件逆向回java源码，JD-GUI是一个图形界面的工具，而CFR则是命令行工具。</p>
-<p>JD-GUI的使用比较简单，只要在终端内输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar </span><br></pre></td></tr></table></figure>
-
-<p>即可打开一个带图形界面的软件，在里面选中逆向出的jar打开即可查看逆向出的文件</p>
-<p>CFR没有图形界面，但实际使用中往往比JD-GUI更稳定，一些JD-GUI无法正确逆向的文件能够在CFR下逆向成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jarfilename.jar inputjarfilename.jar  --outputdir &#x2F;savepath</span><br></pre></td></tr></table></figure>
-
-<p>之后可以通过其它ide或文本编辑器查看逆向出的文件</p>
-<blockquote>
-<p>5.生成我们自己的.keystore文件</p>
-</blockquote>
-<p>平常我们用的一些重新签名工具里面大都是别人做好的签名文件，这里我们可以生成我们自己独有的签名文件。</p>
-<ul>
-<li>在powershell输入</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias 别名 -keyalg RSA -validity 有效天数 -keystore filename.keystore</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-genkey</td>
-<td>产生证书文件</td>
-</tr>
-<tr>
-<td>-alias</td>
-<td>产生别名</td>
-</tr>
-<tr>
-<td>-keystore</td>
-<td>密钥库名称</td>
-</tr>
-<tr>
-<td>-keyalg</td>
-<td>密钥的算法</td>
-</tr>
-<tr>
-<td>-validity</td>
-<td>证书有效天数</td>
-</tr>
-</tbody></table>
-<p>然后按提示分别输入<br>姓名、组织单位、、城市、省份、国家代码<br>Y确认正确<br>然后设置一个密码（输入的时候不会有反应但是实际上输进去了）<br>回车后会再让你确认一次密码</p>
-<p>之后你就得到了自定义的.keystore密匙文件</p>
-<blockquote>
-<p>6.为打包好的.apk签名</p>
-</blockquote>
-<p>在powershell输入指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore filename.keystore -signedjar outputfile.apk inputfile.apk alise</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-verbose</td>
-<td>输出签名过程的详细信息</td>
-</tr>
-<tr>
-<td>alias</td>
-<td>密匙证书文件的别名</td>
-</tr>
-<tr>
-<td>-keystore</td>
-<td>密匙证书文件位置</td>
-</tr>
-<tr>
-<td>-signedjar</td>
-<td>指定输入输出文件名</td>
-</tr>
-<tr>
-<td>inputfile.apk</td>
-<td>未签名文件</td>
-</tr>
-<tr>
-<td>outputfile.apk</td>
-<td>签名后文件</td>
-</tr>
-</tbody></table>
-<p>如此我们便成功的完成了对apk文件的签名</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AirLongDian">
-      <meta itemprop="description" content="联系作者：QQ：269672173">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AirLongDian's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE02/" class="post-title-link" itemprop="url">如何快速而优雅的解决问题（提问的智慧缩减版）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-15 22:43:07 / 修改时间：22:54:04" itemprop="dateCreated datePublished" datetime="2021-02-15T22:43:07+08:00">2021-02-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE/" itemprop="url" rel="index"><span itemprop="name">计算机协会社课</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="如何快速而优雅的解决问题（提问的智慧缩减版）"><a href="#如何快速而优雅的解决问题（提问的智慧缩减版）" class="headerlink" title="如何快速而优雅的解决问题（提问的智慧缩减版）"></a>如何快速而优雅的解决问题（提问的智慧缩减版）</h2><blockquote>
-<p>注：本文大部分内容引用自《提问的智慧》，结尾附原文档链接</p>
-</blockquote>
-<h4 id="不要随便提问！！"><a href="#不要随便提问！！" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h4 id="不要随便提问！！-1"><a href="#不要随便提问！！-1" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h4 id="不要随便提问！！-2"><a href="#不要随便提问！！-2" class="headerlink" title="不要随便提问！！"></a><font color=red>不要随便提问！！</font></h4><h6 id="在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！"><a href="#在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！" class="headerlink" title="在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！"></a><font color=red>在各种解决基本技术问题的方式里，在qq群或者私聊里提问，是你所能操作的方式里最慢，效率最低，成本最高，而且你能学到东西最少的解决方式！！！</font></h6><p>请不要过高的估算自己的问题难度，截止2019年，这个世界上有38亿人在互联网上活跃，通常情况下，你们所遇到的问题中的绝大部分都已经有无数的前车之鉴将解决方案糊在了网上！打开浏览器，然后打开谷歌或者百度或者搜狗或者雅虎或者360搜索或者任何其它的搜索引擎（你们有多么多的选择啊），然后搜索你所遇到的问题，（请务必精准简洁的概括你的问题，如果你搜索<strong>“救命啊，我的电脑坏了，有人能帮我吗？xxxx坏了！”</strong>纯属自己作死，请不要说自己是计算机协会的人，谢谢。），通常情况下使用搜索引擎是大部分问题最快捷的解决方式。</p>
-<p>而且通常情况下，软件手册，技术文档，论坛文章作者会更加深切透彻的描述一个问题产生的原理，从而使你学到更多的东西，好比装GCC编译环境，如果你搜索 “GCC 编译环境配置 ”，你会得到很多篇教程并在自己动手的过程中学会GCC环境的配置，但如果你问我“喵，我不会配置GCC环境”，我会从你手里接过电脑然后顺利的配置好环境再递给你。</p>
-<p>下次你还是不会装GCC。</p>
-<p>在你准备要通过电子邮件、新闻群组或者聊天室提出技术问题前，请你务必先做到以下事情：</p>
-<ol>
-<li>尝试在你准备论坛的文章中搜索答案。</li>
-<li>尝试上网搜索以找到答案。</li>
-<li>尝试阅读手册以找到答案。</li>
-<li>尝试阅读常见问题文件（FAQ）以找到答案。</li>
-<li>尝试自己检查或试验以找到答案。</li>
-<li>向你身边的同学老师打听以找到答案。</li>
-<li>如果你是程序开发者，请尝试阅读源代码以找到答案。</li>
-</ol>
-<p>草率的发问只能得到草率的回答，或者根本得不到任何答案。如果你什么都不做就去技术圈提问的话有很大的概率会收到以下两种答复</p>
-<ol>
-<li>RTFW<ul>
-<li>有一个古老而神圣的传统：如果你收到<code>RTFM （Read The Fucking Manual）</code>的回应，回答者认为你<strong>应该去读他妈的手册</strong>。当然，基本上他是对的，你应该去读一读。</li>
-</ul>
-</li>
-<li>STFW<ul>
-<li>RTFM 有一个年轻的亲戚。如果你收到<code>STFW（Search The Fucking Web）</code>的回应，回答者认为你<strong>应该到他妈的网上搜索</strong>。那人多半也是对的，去搜索一下吧。</li>
-</ul>
-</li>
-</ol>
-<p>通常，用这两句之一回答你的人会给你一份包含你需要内容的手册或者一个网址，而且他们打这些字的时候也正在读着。这些答复意味着回答者认为</p>
-<ul>
-<li><strong>你需要的信息非常容易获得</strong>；</li>
-<li><strong>你自己去搜索这些信息比灌给你，能让你学到更多</strong>。</li>
-</ul>
-<p>你不应该因此不爽；<strong>依照技术圈的标准，他已经表示了对你一定程度的关注，而没有对你的要求视而不见</strong>。你应该对他祖母般的慈祥表示感谢。</p>
-<p>而且即使他没有附文档给你，甚至完全没有回复你，你也不应感到气愤。</p>
-<p>绝不要自以为<strong>理应</strong>得到答案，你没有为这种服务支付任何报酬。</p>
-<h1 id="—————————————"><a href="#—————————————" class="headerlink" title="—————————————"></a>—————————————</h1><p>解释：关于一些看起来很无礼的发言：</p>
-<p>很多技术圈子中看似无礼的行为并不是存心冒犯。相反，它是直接了当，一针见血式的交流风格，这种风格更注重解决问题，而不是使人感觉舒服而却模模糊糊。</p>
-<p>如果你觉得被冒犯了，试着平静地反应。如果有人真的做了出格的事，邮件列表、新闻群组或论坛中的前辈多半会招呼他。如果这<strong>没有</strong>发生而你却发火了，那么你发火对象的言语可能在社区中看起来是正常的，而<strong>你</strong>将被视为有错的一方，这将伤害到你获取信息或帮助的机会。</p>
-<p>夸张的讲法是：你要的是“友善”（以上述方式）还是有用？两个里面挑一个。</p>
-<p>当技术圈的某人说你搞砸了，并且（无论多么刺耳）告诉你别再这样做时，他正在为关心<strong>你</strong>和<strong>他的社区</strong>而行动。对他而言，不理你并将你从他的生活中滤掉更简单。如果你无法做到感谢，至少要表现得有点尊严，别大声哀嚎，也别因为自己是个有戏剧性超级敏感的灵魂和自以为有资格的新来者，就指望别人像对待脆弱的洋娃娃那样对你。</p>
-<p>当然，喵在协会和学校里通常不会，喵怎么说也是个学长，而且还要尊重自己喵的设定，大部分时候喵会卖个萌然后让你自己去搜索，但是在喵使用另一个身份的技术圈，我不确定你们是否看见过转发到群里这段聊天记录。</p>
-<p><img src="https://i.loli.net/2020/11/10/mywXaieGKxcWPlu.png" alt="2020-11-10_203835.png"></p>
-<h1 id="———————————————–"><a href="#———————————————–" class="headerlink" title="———————————————–"></a>———————————————–</h1><p>在你确认你尝试了以上各种方法，并花费了至少20分钟以上仍没能解决问题之后，是时候提一个正确的问题来解决自己的疑惑了。</p>
-<p>一个正确的问题是指什么呢？请看以下问题</p>
-<p>救命啊！！！急急急！！！！快帮我看看！！！有人能帮帮我吗？我电脑坏了！！请把解决方法私发到我邮箱！好人一生平安！！</p>
-<p>请问这个问题表达了什么？</p>
-<p>针对这种问题，我的第一反应是：首先你死不了，然后我一点也不着急，你这么问问题没人能帮你，我知道你电脑坏了但是你啥信息都不说我懒得一句句问，发到你私人邮箱别的遇到这问题的人不就看不到解决方法了吗？所以我还是不理你了吧。</p>
-<p>我对要我问你二十个问题才找得出你真正问题的问题没兴趣 —— 我有更重要的事要做呢。在看到这类问题的时候，我的反应通常不外如下三种</p>
-<ul>
-<li>你还有什么要补充的吗？</li>
-<li>真糟糕，希望你能搞定。</li>
-<li>这关我屁事？</li>
-</ul>
-<p>一个正确的问题应该怎样表述呢？</p>
-<p>以我和zed最近遇到的一个问题为例</p>
-<p>首先，问题的最开头或标题处应该以简略但精准的语言表述你遇到的问题</p>
-<blockquote>
-<p> QV2ray连接成功但无法上网</p>
-</blockquote>
-<p>然后在后面加上你所使用的环境，能够找到的报错，以及其它你能提供的信息</p>
-<blockquote>
-<p> Archinux下QV2ray 连接成功但无法上网，vmess无法使用，日志报错<em>read/write</em> on closed pipe；但ssr链接使用正常</p>
-</blockquote>
-<p>然后表示你已经做了哪些努力但仍然无法解决</p>
-<blockquote>
-<p> Archinux下QV2ray 连接成功但无法上网，vmess无法使用，日志报错<em>read/write</em> on closed pipe；但ssr链接使用正常，我通过搜索引擎没有找到相关的资料，试着重装Qv2ray并删除配置文件无效，验证对时显示ntp服务器时间误差为0秒</p>
-</blockquote>
-<p>最后客气的表示希望能得到帮助</p>
-<blockquote>
-<p>Archinux下QV2ray 连接成功但无法上网，vmess无法使用，日志报错<em>read/write</em> on closed pipe；但ssr链接使用正常，我通过搜索引擎没有找到相关的资料，试着重装Qv2ray并删除配置文件无效，验证对时显示ntp服务器时间误差为0秒,请问这个问题大家有解决方案吗？</p>
-</blockquote>
-<p>这样一来大家第一眼就能看到Archlinux，Qv2ray，有所涉猎的人会看一下这个问题自己是否知道，比如看到<em>read/write</em> on closed pipe知道这个人遇到了系统对时错误，再往下看这个人做了很多努力没能解决问题，而且态度很好，我刚好遇到过这个问题，帮他解决一下吧</p>
-<p>而如果你的问题是这样的：</p>
-<p>“救命啊我翻墙翻不出去！我什么都做对了但是它就是不好使，dalao们快出来救救我”</p>
-<p>你会得到怎样的回答就不言而喻了</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md">提问的智慧原文链接</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AirLongDian">
-      <meta itemprop="description" content="联系作者：QQ：269672173">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AirLongDian's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE01/" class="post-title-link" itemprop="url">C语言快速入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-15 22:41:25" itemprop="dateCreated datePublished" datetime="2021-02-15T22:41:25+08:00">2021-02-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-13 12:53:57" itemprop="dateModified" datetime="2022-12-13T12:53:57+08:00">2022-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8D%8F%E4%BC%9A%E7%A4%BE%E8%AF%BE/" itemprop="url" rel="index"><span itemprop="name">计算机协会社课</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="C语言快速入门"><a href="#C语言快速入门" class="headerlink" title="C语言快速入门"></a><font color=dodgerblue>C语言快速入门</font></h1><blockquote>
-<p>第一部分：一门基础的编程语言</p>
-</blockquote>
-<p>走计算机行业不管哪个方向，会一两门编程语言都是必须的，第一部分讲一下如何快速的掌握一门基础的编程语言。</p>
-<p>这里以c语言作为讲解对象</p>
-<p>首先我们要明晰一个基本的概念，就是模块化<br>c语言是一个模块化了的语言，这个模块化体现在很多方面，比如函数，比如结构体，比如多文件。</p>
-<p>首先说一下函数</p>
-<h2 id="函数是c语言的基本单位"><a href="#函数是c语言的基本单位" class="headerlink" title="函数是c语言的基本单位"></a><font color=orange>函数是c语言的基本单位</font></h2><p>一个c语言程序，就是由一个个变量拼成结构体，一个个结构体与函数拼成文件，最后再由一个个文件拼成最后的整个程序</p>
-<p>那么函数是怎么样的呢？</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    <span class="comment">//代码内容    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这就是一个最简化的函数（当然我们通常不用void）</p>
-<p>这个函数的结构是这样的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>    <span class="comment">//函数声明      简单理解为表示创建一个函数</span></span></span><br><span class="line"><span class="function">    </span>&#123;    <span class="comment">//代码块开始</span></span><br><span class="line">    	<span class="comment">//代码块可以简单理解为我们要运行的一段代码</span></span><br><span class="line">	&#125;	<span class="comment">//代码块结束</span></span><br></pre></td></tr></table></figure>
-
-<p>这里的void是指返回值的类型,void表示没有返回值，为什么函数需要返回值呢？因为我们在执行一个函数的时候通常是需要它来实现某个功能的，如果没有返回值我们就不知道它有没有成功执行，或者不知道它的执行结果了（譬如执行开平方以后我们没有收到返回值，平方是开完了，但是结果捏？？？？？）</p>
-<p>而且有些时候我们的系统在执行函数的时候也强制要求返回值（一些系统，不是所有系统）</p>
-<p>综上，我们的程序最好提供一个返回值</p>
-<p>因此在事实上我们的一个函数表达出来其实是这样的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typename</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//函数内容    </span></span><br><span class="line">    <span class="keyword">return</span> volue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的typename常用的有 int char double long short float</p>
-<p>分别对应为整数，字符，双精度浮点数，长数，短数，浮点数，浮点数就是带小数点的数，计算机处理浮点数有误差，double比float精准一些</p>
-<p>这里我们所写的函数名字叫main</p>
-<p>main函数也就是程序的主函数，主函数就是程序开始执行的地方，也就说不管在主函数前面后面写多少函数都没有用，计算机只有找到主函数才能开始执行</p>
-<p>由于是主函数，所以我们的返回值自己是没有办法用到了，但是有的计算机系统可能会要求，因此通常的要求是返回一个0，告诉系统程序正确执行完成，也就是</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//函数内容 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们运行一下这个程序给大家看看结果</p>
-<p>（展示）因为我们什么都没有执行，所以也什么都没有显示</p>
-<p>那么怎么证明我们的程序真的执行成功了呢？这里我们再增加一行用于显示的指令</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>printf是c语言里的打印（显示到屏幕）语句，这句话的意思是显示hello world</p>
-<p>加上之后我们再来运行一下</p>
-<p>如左下角，加上以后我们的命令行就显示出了我们要显示的内容，这证明本喵刚才认真讲了没有胡说八道（骄傲）</p>
-<p>可能刚才有银还意识到一个问题，就是刚才的程序比上面说的多了一行</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这一句的意思又是虾米捏？</p>
-<p>#后面加的字符是c语言里的预处理指令，就是编译器程序执行前预先处理的指令，用来补足程序运行中需要的一些东西</p>
-<p>这个#include就是包含头文件的意思</p>
-<p>#include &lt;stdio,h&gt;</p>
-<p>的意思就是这个程序要包含头文件stdio.h里面的内容，stdio.h是c语言编译器自带的一个头文件，包含了输入输出的函数之类的一些常用的功能函数，printf（）其实就是一个函数，它在stdio文件里面，我们使用的printf就是调用了程序外部头文件stdio.h里面的print函数。</p>
-<p>刚才咱们已经说了，c语言由很多函数构成，下面咱们再定义一下别的函数来个多函数的程序</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dnlm</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; pass your mother&quot;</span> );	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    dnlm();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>由于这个不是主函数了所以函数名就可以自己起了，不过这里要注意，函数名不能和关键字（c语言里面已经被占用的词）同名</p>
-<p>这里我们起名（丢乃老母）</p>
-<p>呐，这里左下角就正确显示了</p>
-<p>这里是先定义了丢乃老母函数然后在主函数里面用=调用了它</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnlm();</span><br></pre></td></tr></table></figure>
-
-<p>就酱，我们写了一个多个函数的c语言程序，（在学习编程的初期可以先不用考虑多文件，先从一个文件写起）</p>
-<p>然后下面我们讲一坨选择分支结构</p>
-<p>这个选择分支结构它是这个样子的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//如果条件成立执行</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//如果条件不成立执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们添加一个丢乃老父并且声明母亲父亲两个整数来测试一下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dnlm</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">    <span class="keyword">int</span> mother=<span class="number">30</span>;<span class="comment">//声明整数mother等于30	</span></span><br><span class="line">    <span class="keyword">int</span> father=<span class="number">20</span>;    <span class="comment">//声明整数father等于20	</span></span><br><span class="line">    <span class="keyword">if</span> (mother&gt;father)    <span class="comment">//如果mother大于father	</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; pass your mother&quot;</span> );    <span class="comment">//显示	</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">//否则</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; pass your father&quot;</span> );    <span class="comment">//显示</span></span><br><span class="line">    &#125;	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    dnlm();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行结果正确的显示在了左下角。</p>
-<p>这样一来证明我们的选择结构发挥了它应有的效果</p>
-<p>刚才讲完了选择分支结构，这次我们从循环结构开始讲，一课时之内把c语言入门讲完，然后看看时间能不能够讲一些其他的东西。</p>
-<blockquote>
-<p>循环结构</p>
-</blockquote>
-<p>首先是while循环，这是平常会经常用到的一个循环</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(循环条件)&#123;    <span class="comment">//代码内容&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>while循环的结构是这样的，首先判断循环条件是不是成立，例如循环条件是变量a&gt;=2,那么当a大于等于2的时候，就会执行代码内容一次，然后再次判断a是不是还大于等于2，如果是的话再执行一次。直到有一次发现a不再大于等于2了，才结束循环开始执行循环外面的内容。</p>
-<p>这样一来的话，实际上也就是说，我们在写这种循环的时候，里面一定要写改变循环条件的代码，否则循环条件一直不变就变成死循环了。</p>
-<p>while循环是先判断然后才决定执不执行的，所以while循环最少会执行0次，也就是说<font color=gold>如果一开始条件就不成立的话就一次都不执行。</font></p>
-<p><font color=red>与之相对的</font>是do。。。while循环</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;    <span class="comment">//代码内容&#125;while()</span></span><br></pre></td></tr></table></figure>
-
-<p>do。。。while和while相反，dowhile是先做了再说，做一遍到做完以后再判断，是不是条件成立 ，条件成立的话继续循环，条件不成立的话到此为止，继续往下执行，do while循环是至少会执行一次的循环。</p>
-<p>与while系列循环用的同样多的就是for循环了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">100</span>;i&gt;=<span class="number">0</span>;i--)&#123;    <span class="comment">//代码内容&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>for循环的条件分为三部分，第一部分是声明控制循环的变量，比如声明个i=100，第二个部分和while的控制条件一样是用来判断循环执不执行,最后一个部分是用来声明控制变量的变化，就和while一样，for也需要改变控制条件来防止死循环，不过for直接在控制条件里就可以写好改变控制变量的语句。</p>
-<p>以上是循环结构的三种语句。</p>
-<blockquote>
-<p>跳转语句</p>
-</blockquote>
-<p>下面进行今天的第二部分，跳转语句</p>
-<p>c语言里的跳转语句其实就是goto</p>
-<p>语法也很简单，在任意一个地方立下flag，然后就可以随时goto到这个地方了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:lable1</span><br><span class="line">  <span class="comment">//此处省略两百万亿行</span></span><br><span class="line"><span class="keyword">goto</span> lable1</span><br></pre></td></tr></table></figure>
-
-<p>就可以直接飞回flag</p>
-<p>goto用的好的话不仅可以跳转还可以实现各种循环，不过goto很容易出现不知道飞到了哪里去但是编译器不报错导致查错人员头比地球还大的现象，因此一般的来说，不建议使用goto语句。</p>
-<blockquote>
-<p>数组</p>
-</blockquote>
-<p>数组部分也很简单，</p>
-<p>我们平常声明一个变量a，可以储存一个数据。</p>
-<p>我们现在声明一个数组a[100],就可以储存100个数据</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 数组名[数组长度]</span><br></pre></td></tr></table></figure>
-
-<p>可以通过a[0-99]来分别使用这100个数据，就不用写100遍声明变量了，而且如果我们要查找的数有好几个特点，还可以使用二维或者多维数组。</p>
-<p>比如a[1][2][3][4][5][6][7]就是七维数组里第二组的第三小组的第四小组的第五小组的第六小组的第七小组的第八个数</p>
-<p>这里要注意<font color=red>数组里面排序序号是从零开始的，第一个内容的编号是0，所以数组名加数字实际访问到位置是数字加一的位置存的数据。</font></p>
-<p>从本质上而言，数组其实就是一种指针的应用方式。</p>
-<blockquote>
-<p>指针</p>
-</blockquote>
-<p>语言里面指针是核心精髓所在，所谓指针，就是画一个箭头指向数据储存的地方</p>
-<p>我们平常声明一个变量，a=100，大概就相当于在白纸上划了一部分叫做a区，然后往里面记录了一个数字100,100写在a这个地方。</p>
-<p>这块a区所在的位置就叫做a的地址</p>
-<p>c语言里面和地址有关的有两个符号，一个是&amp;，取地址符，一个是*，是指针的标记</p>
-<p>我们平常创建变量的时候是这样的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br></pre></td></tr></table></figure>
-
-<p>我们创建指针时候是这样的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p;</span><br></pre></td></tr></table></figure>
-
-<p>标上一个*</p>
-<p>表示这个变量p存储的是int变量的地址。</p>
-<p>我们平常给变量赋值的方法是这样的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-
-<p>我们给指针赋值的时候是这样的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p=&amp;a;</span><br></pre></td></tr></table></figure>
-
-<p>这里的&amp;a的意思就是取得a的地址</p>
-<p>看到这里大家可能会有所疑惑，这个指针和变量到底有什么区别呢？</p>
-<p>这里举一个简单的例子来说明指针和直接调用变量的区别</p>
-<p>坐在隔壁的小明想要抄你的试卷，他看了一下a区，把数字抄走了，这是b=a，</p>
-<p>坐在隔壁的小明想要抄你的试卷，他拿走了你的试卷，这是b=&amp;a</p>
-<p>前者只是拿走了数据，后者拿走的数据的地址，那么这会导致什么呢？  </p>
-<p>当小明想要修改卷子的时候——  </p>
-<p>前者，b修改了卷子上的数值，a的卷子没事，因为b只是抄走了一个数据</p>
-<p>后者，b修改了卷子上的数值，a惊叫一声：卧槽你把我卷子改了干啥！！！</p>
-<p>这就是使用变量的值和使用变量的指针的区别</p>
-<h2 id="BUT！！！为什么我们需要使用指针呢？？？？"><a href="#BUT！！！为什么我们需要使用指针呢？？？？" class="headerlink" title="BUT！！！为什么我们需要使用指针呢？？？？"></a>BUT！！！为什么我们需要使用指针呢？？？？</h2><p>当然是因为**<font color=red>有些时候我们必须使用指针!</font>**</p>
-<p>举个糖炒栗子！比如我们想要在某个函数里修改函数外的值的时候，我们就必须得使用指针。</p>
-<p>这里我们就需要一点关于函数调用、形参与实参的知识。</p>
-<p>有些时候我们要用的函数会需要传入一些数值，比如我们写一个求和的函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span>  <span class="comment">//声明一个返回值是整数的函数，使用时需要传入整数a和整数b</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a+b; <span class="comment">//返回a+b的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后我们在使用的时候就需要传入两个值</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum(x,y) <span class="comment">//x和y是之前已经弄好的存了值的变量</span></span><br><span class="line">sum(<span class="number">10</span>,<span class="number">20</span>)<span class="comment">//或者这样直接给两个数值</span></span><br></pre></td></tr></table></figure>
-
-<p>这里面的a和b就叫形参，也可以简单粗略地理解为参数所需的形式，x和y就是实参，可以简单粗略的理解为实际传入的参数。</p>
-<p>在程序运行到调用sum函数的时候就会创建两个临时的变量a和b，然后把x和y的值传给a和b。</p>
-<p>这里就出现了不使用指针无法解决的问题——如果我们想要把存储的结果还存在x里呢？</p>
-<p>当然，这样其实还能解决，<code>x=sum(x,y)</code>就行了，但是如果我们要存到的地方不确定呢？比如根据sum计算结果的不同存到不同的地方，是不是没有办法啦！</p>
-<p>而使用指针就可以很方便（才怪）的解决这个问题，我们不传入值，而是把地址传过去，小明不久可以直接修改你的试卷了吗？</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> y=<span class="number">2</span>;</span><br><span class="line">	sum (&amp;x,&amp;y);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>* a,<span class="keyword">int</span>* b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	*a=*a+*b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这样就完美的解决了这个问题。</p>
-<p>那么这里出一道小题，如果想要修改指针变量int* a的值应该怎么办呢？</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>** a,<span class="keyword">int</span>** b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	*a=*a+*b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p> 当然是传入指针的指针！</p>
-<p>指针是可以一层套一层的，<code>int************************************************ a</code>都可以！</p>
-<p>回到刚才，讲指针的时候我们有说数组是指针的一种应用，是什么意思呢？现在我们就可以解答这个问题了，数组就是根据你的需求创建了好多挨在一起的空间，然后数组的名字就是一个指针，指向第一块地方，然后数组[]里跟不同的数字就是把指针往后移不同的长度，指到不同的地方。</p>
-<p>比如a[3]，其实也就是*(a+3)的意思，你把a[3]写成*(a+3),*(3+a),3[a]都可以的，都是一样的东西。</p>
-<p>这里也解答了为什么数组前面要加int double之类的类型的问题，因为声明数组的时候需要创建出一些地方来存数据，数组前面的数据类型是用来标识每一块地方多大的。</p>
-<p>很高兴大家能听我说这么多，今天我要讲的东西就这么多。</p>
-<p>大家有兴趣的话也可以自己写点东西练习一下，比如写个学生信息管理系统什么的，这节课提供的知识是足够的。这里也宣传一下我们的协会，</p>
-<p>追求技术是一场漫长的旅程，很高兴在这里与你们相逢。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1657,7 +1286,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

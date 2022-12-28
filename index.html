@@ -162,6 +162,74 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/28/SublimeText_JAVA%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AirLongDian">
+      <meta itemprop="description" content="联系作者：QQ：269672173">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AirLongDian's BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/28/SublimeText_JAVA%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">SublimeText JAVA编译系统（调用系统终端）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-28 19:53:44 / 修改时间：19:58:23" itemprop="dateCreated datePublished" datetime="2022-12-28T19:53:44+08:00">2022-12-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">技术教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>新建编译系统，输入以下内容</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;      </span><br><span class="line">	<span class="attr">&quot;cmd&quot;</span> : [<span class="string">&quot;javac&quot;</span>, <span class="string">&quot;$file_name&quot;</span>],      </span><br><span class="line">	<span class="attr">&quot;file_regex&quot;</span>: <span class="string">&quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;</span>,      </span><br><span class="line">	<span class="attr">&quot;selector&quot;</span> : <span class="string">&quot;source.java&quot;</span>,      </span><br><span class="line">	<span class="attr">&quot;shell&quot;</span>:<span class="literal">false</span>,      </span><br><span class="line">	<span class="attr">&quot;working_dir&quot;</span> : <span class="string">&quot;$file_path&quot;</span>,      </span><br><span class="line">	<span class="attr">&quot;variants&quot;</span>:      </span><br><span class="line">	[          </span><br><span class="line">		&#123;            </span><br><span class="line">			<span class="attr">&quot;name&quot;</span>: <span class="string">&quot;RunInCommand&quot;</span>,            </span><br><span class="line">			<span class="attr">&quot;cmd&quot;</span>: </span><br><span class="line">			[</span><br><span class="line">				<span class="string">&quot;cmd&quot;</span>, <span class="string">&quot;/c&quot;</span>, <span class="string">&quot;javac&quot;</span>,<span class="string">&quot;$&#123;file&#125;&quot;</span>,<span class="string">&quot;&amp;&amp;&quot;</span>,<span class="string">&quot;start&quot;</span>, <span class="string">&quot;cmd&quot;</span>, <span class="string">&quot;/k&quot;</span>, <span class="string">&quot;java $file_name&quot;</span></span><br><span class="line">			]          </span><br><span class="line">		&#125;,</span><br><span class="line">		&#123;              </span><br><span class="line">		<span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Debug&quot;</span>,              </span><br><span class="line">		<span class="attr">&quot;cmd&quot;</span>: </span><br><span class="line">		[</span><br><span class="line">		<span class="string">&quot;cmd&quot;</span>, <span class="string">&quot;/c&quot;</span>,<span class="string">&quot;javac&quot;</span>,<span class="string">&quot;$&#123;file&#125;&quot;</span>,<span class="string">&quot;&amp;&amp;&quot;</span>,<span class="string">&quot;start&quot;</span>, <span class="string">&quot;cmd&quot;</span>, <span class="string">&quot;/k&quot;</span>,<span class="string">&quot;gdb $&#123;file_path&#125;/$&#123;file_base_name&#125;&quot;</span></span><br><span class="line">		]          </span><br><span class="line">	&#125;      </span><br><span class="line">]  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/SublimeText_CPP%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1085,124 +1153,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/21/%E6%9B%B4%E6%94%B9%E5%BC%80%E6%9C%BA%E5%BC%95%E5%AF%BCLOGO%EF%BC%88%E6%97%A0%E9%9C%80%E4%B8%8B%E8%BD%BDBIOS%E6%96%87%E4%BB%B6%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AirLongDian">
-      <meta itemprop="description" content="联系作者：QQ：269672173">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AirLongDian's BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/21/%E6%9B%B4%E6%94%B9%E5%BC%80%E6%9C%BA%E5%BC%95%E5%AF%BCLOGO%EF%BC%88%E6%97%A0%E9%9C%80%E4%B8%8B%E8%BD%BDBIOS%E6%96%87%E4%BB%B6%EF%BC%89/" class="post-title-link" itemprop="url">更改开机引导LOGO（无需下载BIOS文件）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-21 13:50:43 / 修改时间：13:56:53" itemprop="dateCreated datePublished" datetime="2022-01-21T13:50:43+08:00">2022-01-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">技术教程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="更改开机引导LOGO（无需下载BIOS文件）"><a href="#更改开机引导LOGO（无需下载BIOS文件）" class="headerlink" title="更改开机引导LOGO（无需下载BIOS文件）"></a>更改开机引导LOGO（无需下载BIOS文件）</h1><p>作者：BILIBILI:万能的小奇喵    </p>
-<h3 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h3><ul>
-<li><p>原理：<br>从电脑的 FLASH ROM 中提取 bios 后进行修改再刷写回 FLASH ROM</p>
-<h4 id="警告：BIOS操作有一定风险，请谨慎决定"><a href="#警告：BIOS操作有一定风险，请谨慎决定" class="headerlink" title="警告：BIOS操作有一定风险，请谨慎决定"></a><font color=red>警告：BIOS操作有一定风险，请谨慎决定</font></h4></li>
-<li><p>需要准备的工具</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>工具</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FPTW64</td>
-<td>用于从 FLASH 提取 BIOS 文件，以及向 FLASH 写入修改后的 BIOS 文件</td>
-</tr>
-<tr>
-<td>Change Logo</td>
-<td>用于替换 BIOS 里的开机引导 LOGO</td>
-</tr>
-</tbody></table>
-<h3 id="2-提取BIOS"><a href="#2-提取BIOS" class="headerlink" title="2. 提取BIOS"></a>2. 提取BIOS</h3><ol>
-<li>（可选）新建一个空的工作文件夹【本文中为<code>D</code>盘根目录下的 <code>BIOSWORKSPACE</code>文件夹】</li>
-<li>（可选）在<code>BIOSWORKSPACE</code> 中新建一个文件夹用于存放 FPTW工具【本文中为FPTW64】</li>
-<li>将 FPTW64 解压到<code>FPTW64</code></li>
-<li>按下<kbd>Win</kbd>+<kbd>x</kbd>，选择 <code>Windows终端（管理员）</code>【如果你的系统是 Windows10 则选择 Windows PowerShell（管理员）】</li>
-<li>使用<code>cd</code>指令切换到 FPTW 目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd D:\BIOSWORKSPACE\FPTW64</span><br></pre></td></tr></table></figure></li>
-<li>使用 FPTW64 提取 BIOS 并保存为文件【本文中为BIOS.bin】<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\fptw64.exe -d ..\BIOS.bin -bios</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="3-替换图片"><a href="#3-替换图片" class="headerlink" title="3. 替换图片"></a>3. 替换图片</h3><ol>
-<li>点击<kbd>Load Image</kbd></li>
-<li>文件类型选择为<code>All Files (*.*)</code></li>
-<li>选择上一步骤保存的<code>BIOS.bin</code></li>
-<li>正常情况下 Available Images 栏应当会识别出 BIOS 文件中的启动 Logo 图片<h4 id="警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸-BIOS-就只能网购编程器和夹子线拆修了"><a href="#警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸-BIOS-就只能网购编程器和夹子线拆修了" class="headerlink" title="警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸 BIOS 就只能网购编程器和夹子线拆修了"></a><font color=red>警告：如果此步骤失败请勿进行下一步骤！！！！否则一旦刷炸 BIOS 就只能网购编程器和夹子线拆修了</font></h4></li>
-<li>（可选）点击<kbd> Save Logo</kbd>将BIOS内的原 LOGO 备份，以备将来哪天想换回去。</li>
-<li>点击<kbd>Browse</kbd>选择一张jpg或bmp格式的图片，大小在 800x600 以内的 jpg 格式图片</li>
-<li>点击<kbd>Replace Logo</kbd></li>
-<li>点击<kbd>Save Image As</kbd>,保存修改后的文件到工作目录【本文中保存为 BIOSRL】</li>
-</ol>
-<h3 id="4-刷入修改后的BIOS"><a href="#4-刷入修改后的BIOS" class="headerlink" title="4. 刷入修改后的BIOS"></a>4. 刷入修改后的BIOS</h3><ol>
-<li>按下<kbd>Win</kbd>+<kbd>x</kbd>，选择 <code>Windows终端（管理员）</code>【如果你的系统是 Windows10 则选择 Windows PowerShell（管理员）】</li>
-<li>使用<code>cd</code>指令切换到 FPTW 目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd D:\BIOSWORKSPACE\FPTW64</span><br></pre></td></tr></table></figure></li>
-<li>使用 FPTW64 刷入修改后的BIOS【本文中为BIOSRL.bin】<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\fptw64.exe -f ..\BIOSRL.bin -bios</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="5-重启"><a href="#5-重启" class="headerlink" title="5.重启"></a>5.重启</h3><p>重启查看替换后的显示效果，重复以上步骤调整至满意</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1272,7 +1222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1285,7 +1235,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
